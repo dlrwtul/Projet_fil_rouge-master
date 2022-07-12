@@ -1,0 +1,32 @@
+api_platform:
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        versions: [3]
+        api_keys:
+          apiKey:
+            name: Authorization
+            type: header
+        # post:
+        #     summary: Uploads a file.
+        #     consumes:
+        #         - multipart/form-data
+        #     parameters:
+        #         - in: formData
+        #           name: upfile
+        #           type: file
+        #           description: The file to upload.
+    defaults:
+        pagination_client_items_per_page: true
+        pagination_items_per_page: 10
+        pagination_maximum_items_per_page: 10
+    collection:
+        order: 'DESC'
+
+        order_parameter_name: 'order'
+
+        pagination:
+            items_per_page_parameter_name: parpage # Default value
+            

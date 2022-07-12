@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div>
+    <h1>Veuillez confirmer votre compte</h1>
+    <p>
+        Bienvenue dans votre app Brasil Burger , cliquer sur  <a href="{{ url('api_users_verify_mail_collection',{"token" : token}) }}">confirmation</a> pour confirmer votre compte.
+    </p>
+    <p>
+        Expire at {{ expireAt }}
+    </p>
+</div>
+{% endblock %}
