@@ -8,6 +8,10 @@ class CommandeMenuTaillesValidator
 {
     public static function validate($object, ExecutionContextInterface $context, $payload)
     {
+        if ($object->getId() != null) {
+            return;
+        }
+
         $boissonTailles = [];
         $errors = [];
         $quantite = 0;

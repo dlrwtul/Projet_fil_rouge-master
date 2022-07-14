@@ -8,6 +8,8 @@ use App\Repository\CommandeRepository;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Validator\CommandeDoublonsValidator;
+use App\Validator\CommandeUpdateEtatValidator;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Validator\CommandeMenuTaillesValidator;
 use App\Validator\CommandeMenusBurgersValidator;
@@ -16,7 +18,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use App\Validator\CommandeDoublonsValidator;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 #[ApiResource(
@@ -35,6 +36,11 @@ use App\Validator\CommandeDoublonsValidator;
             "security" => "is_granted('READ', object)"
         ],
         'delete' =>[ "security" => "is_granted('DELETE', object)"],
+        'put' => [
+            "path" => "commandes/{id}/{etat}",
+            "security" => "is_granted('DELETE', object)",
+            "deserialize" => false
+        ]
     ]
 )]
 
@@ -43,6 +49,7 @@ use App\Validator\CommandeDoublonsValidator;
 #[Assert\Callback([CommandeMenusBurgersValidator::class, 'validate'])]
 #[Assert\Callback([CommandeDoublonsValidator::class, 'validate'])]
 #[Assert\Callback([CommandeMenuTaillesValidator::class, 'validate'])]
+#[Assert\Callback([CommandeUpdateEtatValidator::class, 'validate'])]
 
 class Commande
 {
@@ -91,6 +98,7 @@ class Commande
     private $livraison;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["commande:update"])]
     private $etat;
 
     #[ORM\Column(type: 'boolean', nullable: true)]

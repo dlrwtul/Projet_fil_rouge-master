@@ -46,6 +46,25 @@ class CommandePrePersistListener implements EventSubscriberInterface
 
         $object->setClient($this->tokenStorage->getToken()->getUser());
 
+        $check = $this->commandeRepository->findOneBy(array('id' => $object->getId()));
+        
+        dd($object->getEtat(), $check->getEtat());
+
     }
+
+    // public function preUpdate(LifecycleEventArgs $args): void
+    // {
+
+    //     $object = $args->getObject();
+        
+    //     if (!$object instanceof Commande) {
+    //         return;
+    //     }
+
+    //     $check = $this->commandeRepository->findOneBy(array('id' => $object->getId()));
+        
+    //     dd($object->getEtat(), $check->getEtat());
+
+    // }
 
 }

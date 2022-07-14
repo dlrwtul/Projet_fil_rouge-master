@@ -23,7 +23,6 @@ class CommandeDataPersister implements DataPersisterInterface {
 
     public function persist($data, array $context = [])
     {
-        //dd($data->getCommandeBurgers());
         $this->entityManager->persist($data);
         $this->entityManager->flush();
         return $data;

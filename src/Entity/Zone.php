@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Controller\ZoneController;
 use App\Repository\ZoneRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -18,12 +19,17 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['zone:write']],
     normalizationContext: ['groups' => ['zone:read']],
     collectionOperations: [
-        'post',
+        'post' => [
+            'controller' => ZoneController::class,
+            'deserialize' =>false
+        ],
         'get' => ["security" => "is_granted('ROLE_VISITER')"],
     ],
     itemOperations: [
         'get',
-        'put',
+        'put' => [
+            'controller' => ZoneController::class
+        ],
         'delete'
     ]
 )]
@@ -49,8 +55,8 @@ class Zone
     #[ORM\Column(type: 'boolean')]
     private $isEtat;
 
-    #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Quartier::class)]
-    //#[Groups(["zone:read","zone:write","commande:write"])]
+    #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Quartier::class,cascade:["persist", "remove"])]
+    #[Groups(["zone:read"])]
     #[ApiSubresource]
     private $quartiers;
 
