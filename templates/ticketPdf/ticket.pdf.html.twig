@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="w-1/2 p-2 border-1">
+    <div class="pl-2">
+        <h1>Ticket de caisse n° {{ ticket.reference }}</h1>
+    </div>
+    <div class="border-2 w-full my-4"></div>
+    <div>
+        <table class="w-full">
+            <thead>
+                <tr>
+                    <th>n°</th>
+                    <th>Produit</th>
+                    <th>Qte</th>
+                    <th>Prix Unitaire</th>
+                    <th>Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set count = 0 %}
+                {% for commandeProduit in ticket.commande.commandeProduits %}
+                    <tr>
+                        {% set count = count + 1 %}
+                        <th>{{count}}</th>
+                        <td>{{commandeProduit.produit.nom}}</td>
+                        <td>{{commandeProduit.quantite}}</td>
+                        <td>{{commandeProduit.prix}}</td>
+                        <td>{{commandeProduit.prix * commandeProduit.quantite}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="border-2 w-full my-4"></div>
+    <div class="w-full flex flex-column justify-between">
+        <div><strong>Montant: </strong>{{ ticket.commande.montant}}</div>
+        <div><strong>Date: </strong>{{ ticket.date}}</div>
+    </div>
+</div>
+{% endblock %}

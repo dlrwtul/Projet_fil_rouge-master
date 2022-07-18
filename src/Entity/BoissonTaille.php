@@ -24,6 +24,9 @@ class BoissonTaille
     #[Groups(["boisson:read","commande:read","livraison:read","commande:write","boissonTaille:read"])]
     private $id;
 
+    #[Groups(["ticket:read"])]
+    private $nom;
+
     #[ORM\Column(type: 'integer')]
     #[Groups(["boisson:read","boisson:write","boissonTaille:read"])]
     #[Assert\Positive()]
@@ -55,6 +58,11 @@ class BoissonTaille
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->boisson->getNom()." ".$this->taille->getLibelle();
     }
 
     public function getQuantiteStock(): ?int
@@ -151,33 +159,4 @@ class BoissonTaille
         return $this;
     }
 
-    /**
-     * @return Collection<int, CommandeBoissonTaille>
-     */
-    /* public function getCommandeBoissonTailles(): Collection
-    {
-        return $this->commandeBoissonTailles;
-    }
-
-    public function addCommandeBoissonTaille(CommandeBoissonTaille $commandeBoissonTaille): self
-    {
-        if (!$this->commandeBoissonTailles->contains($commandeBoissonTaille)) {
-            $this->commandeBoissonTailles[] = $commandeBoissonTaille;
-            $commandeBoissonTaille->setBoissonTaille($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommandeBoissonTaille(CommandeBoissonTaille $commandeBoissonTaille): self
-    {
-        if ($this->commandeBoissonTailles->removeElement($commandeBoissonTaille)) {
-            // set the owning side to null (unless already changed)
-            if ($commandeBoissonTaille->getBoissonTaille() === $this) {
-                $commandeBoissonTaille->setBoissonTaille(null);
-            }
-        }
-
-        return $this;
-    } */
 }

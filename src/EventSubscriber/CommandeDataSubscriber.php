@@ -3,12 +3,17 @@
 namespace App\EventSubscriber;
 
 use App\Entity\Commande;
+use App\Service\EtatService;
+use App\Service\MailerService;
+use App\Repository\CommandeRepository;
+use App\Service\GenerateTicketService;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use ApiPlatform\Core\EventListener\EventPriorities;
-use App\Service\EtatService;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class CommandeDataSubscriber implements EventSubscriberInterface
@@ -17,7 +22,7 @@ class CommandeDataSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::VIEW => ['getData', EventPriorities::PRE_WRITE]
+            KernelEvents::VIEW => ['getData', EventPriorities::PRE_WRITE],
         ];
     }
 
@@ -67,4 +72,5 @@ class CommandeDataSubscriber implements EventSubscriberInterface
             $commande->setEtat($newEtat);
         }
     }
+
 }

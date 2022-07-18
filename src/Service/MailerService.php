@@ -15,7 +15,7 @@ class MailerService
         $this->mailer = $mailer;
     }
 
-    public function sendMail(string $email,string $token)
+    public function sendMailConfirmation(string $email,string $token)
     {
         $date = new \DateTime('+1 days');
         $message = (new TemplatedEmail())
@@ -29,5 +29,16 @@ class MailerService
                     ]);
         $this->mailer->send($message);
 
+    }
+
+    public function sendEmail($email) {
+
+        $message = (new TemplatedEmail())
+                    ->from(self::$EmailFrom)
+                    ->to($email)
+                    ->subject("Notification de Commande Brazil Burger")
+                    ->htmlTemplate("mailer/sendMailCommandeTermine.html.twig")
+                    ;
+        $this->mailer->send($message);
     }
 }

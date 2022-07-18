@@ -27,7 +27,7 @@ class Produit
 
     #[ORM\Column(type: 'string', length: 255,unique: true )]
     #[Assert\NotBlank(message:"Nom obligatoire")]
-    #[Groups(["product:read","product:write","taille:read","commande:read","boisson:read","boissonTaille:read"])]
+    #[Groups(["product:read","product:write","taille:read","commande:read","boisson:read","boissonTaille:read","ticket:read"])]
     protected $nom;
 
     #[ORM\Column(type: 'blob')]
@@ -40,6 +40,12 @@ class Produit
     protected $prix;
 
     #[Groups(["product:write"])]
+    #[Assert\File(
+        maxSize: '10k',
+        maxSizeMessage:"max size (10k)",
+        mimeTypes: ['image/*'],
+        mimeTypesMessage: 'Uploaded file must be an image',
+    )]
     protected ?File $file = null;
 
     #[ORM\Column(type: 'boolean')]

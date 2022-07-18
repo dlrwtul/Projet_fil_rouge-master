@@ -59,11 +59,11 @@ class RegistrationsController extends AbstractController {
                         $user->setPassword($hashed);
                         $user->setIsEtat(false);
                         $user->eraseCredentials();
-                        //$token = $JWTManager->create($user);
                         $token = $user->getToken();
+
                         $userRepository->add($user,true);
 
-                        $mailer->sendMail($user->getUserIdentifier(),$token);
+                        $mailer->sendMailConfirmation($user->getUserIdentifier(),$token);
                     
                         return $this->json("veuiller Confirmer votre email", 200);
     
@@ -93,26 +93,4 @@ class RegistrationsController extends AbstractController {
         }
     }
 
-    //#[Route(path:'api/verify_mail/{token}',name:'app_verify_mail', methods:['GET'])]
-    /* public function verifyUserEmail(Request $request,UserRepository $userRepository,String $token): Response
-    {
-        $tokenParts = explode(".", $token);  
-        //$tokenHeader = base64_decode($tokenParts[0]);
-        $tokenPayload = base64_decode($tokenParts[1]);
-        //$jwtHeader = json_decode($tokenHeader);
-        $jwtPayload = json_decode($tokenPayload);
-
-        $user = $userRepository->findOneBy(array('login' => $jwtPayload->username));
-
-        if ($user !=null) {
-
-            $user->setIsEtat(true);
-
-            return $this->json("Suscribtion succes",200);
-
-        } else {
-
-            return $this->json("Your token is invalid",400);
-        }
-    } */
 }

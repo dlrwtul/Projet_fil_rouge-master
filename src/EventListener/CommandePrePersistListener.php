@@ -2,10 +2,13 @@
 
 namespace App\EventListener;
 
-use ApiPlatform\Core\Filter\Validator\Length;
 use App\Entity\Commande;
 use Doctrine\ORM\Events;
+use App\Service\EtatService;
+use App\Service\MailerService;
 use App\Repository\CommandeRepository;
+use App\Service\GenerateTicketService;
+use ApiPlatform\Core\Filter\Validator\Length;
 use App\Service\CalculMontantCommandeService;
 use App\Service\ICalculMontantCommandeService;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
@@ -18,10 +21,16 @@ class CommandePrePersistListener implements EventSubscriberInterface
     private ICalculMontantCommandeService $calculMontantCommandeService;
     private $tokenStorage;
 
-    public function __construct(CommandeRepository $commandeRepository,CalculMontantCommandeService $calculMontantCommandeService,TokenStorageInterface $tokenStorage){
+
+    public function __construct(
+        CommandeRepository $commandeRepository,
+        CalculMontantCommandeService $calculMontantCommandeService,
+        TokenStorageInterface $tokenStorage,
+    ){
         $this->commandeRepository = $commandeRepository;
         $this->calculMontantCommandeService = $calculMontantCommandeService;
         $this->tokenStorage = $tokenStorage;
+        
     }
    
     public function getSubscribedEvents(): array
@@ -51,20 +60,5 @@ class CommandePrePersistListener implements EventSubscriberInterface
         dd($object->getEtat(), $check->getEtat());
 
     }
-
-    // public function preUpdate(LifecycleEventArgs $args): void
-    // {
-
-    //     $object = $args->getObject();
-        
-    //     if (!$object instanceof Commande) {
-    //         return;
-    //     }
-
-    //     $check = $this->commandeRepository->findOneBy(array('id' => $object->getId()));
-        
-    //     dd($object->getEtat(), $check->getEtat());
-
-    // }
 
 }

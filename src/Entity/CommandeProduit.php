@@ -20,17 +20,19 @@ class CommandeProduit
     private $id;
 
     #[ORM\Column(type: 'integer')]
-    #[Groups(["commande:read","commande:write"])]
+    #[Groups(["commande:read","commande:write","ticket:read"])]
     #[Assert\Positive()]
     #[Assert\NotEqualTo(0)]
     private $quantite = 1;
 
     #[ORM\Column(type: 'float')]
-    #[Groups(["commande:read"])]
+    #[Groups(["commande:read","ticket:read"])]
     private $prix;
 
     #[ORM\ManyToOne(targetEntity: Commande::class, inversedBy: 'commandeProduits')]
     private $commande;
+
+    private $produit;
 
     public function __construct(int $quantite = null){
         $this->quantite = $quantite;
@@ -77,4 +79,5 @@ class CommandeProduit
         return $this;
     }
 
+    public function getProduit(){}
 }

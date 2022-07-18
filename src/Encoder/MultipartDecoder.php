@@ -32,7 +32,7 @@ final class MultipartDecoder implements DecoderInterface
         //$thumbed = base64_encode(fread(fopen($file, "r"),64));
         //dd($thumbed);
         //dd($request);
-        //dd($request->request->all());
+
         if (!$request) {
             return null;
         }

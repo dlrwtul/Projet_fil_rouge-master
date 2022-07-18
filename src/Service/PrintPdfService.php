@@ -3,18 +3,27 @@
 namespace App\Service;
 
 use Knp\Snappy\Pdf;
+use Twig\Environment;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class PrintPdfService 
 {
     private $knpSnappyPdf;
+    private $twig;
 
-    public function __construct(Pdf $knpSnappyPdf) {
+    public function __construct(Pdf $knpSnappyPdf, Environment $twig) {
         $this->knpSnappyPdf = $knpSnappyPdf;
+        $this->twig = $twig;
     }
 
-    public function PrintAsPdf($array)
+    public function pdfAction(Object $object)
     {
-       // return $this->knpSnappyPdf->getOutputFromHtml($html);
+        $html = $this->twig->render('ticketPdf/ticket.pdf.html.twig', array(
+            'ticket' => $object
+        ));
+
+        $pdfFile = $this->knpSnappyPdf->getOutputFromHtml($html, ['encoding' => 'UTF8']);
+        
+        return $pdfFile;
     }
 }

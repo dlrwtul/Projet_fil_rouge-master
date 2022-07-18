@@ -2,10 +2,12 @@
 
 namespace App\DataPersister;
 
+use App\Entity\Commande;
+use App\Service\EtatService;
 use Doctrine\ORM\EntityManagerInterface;
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
-use App\Entity\Commande;
-
+use App\Service\GenerateTicketService;
+use App\Service\MailerService;
 
 class CommandeDataPersister implements DataPersisterInterface {
 

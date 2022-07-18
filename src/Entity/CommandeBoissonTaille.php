@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class CommandeBoissonTaille extends CommandeProduit
 {
     #[ORM\ManyToOne(targetEntity: BoissonTaille::class, inversedBy: 'commandeBoissonTailles')]
-    #[Groups(["commande:write","commande:read","livraison:read"])]
+    #[Groups(["commande:write","commande:read","livraison:read","ticket:read"])]
     #[Assert\NotNull()]
     private $boissonTaille;
 
@@ -28,6 +28,12 @@ class CommandeBoissonTaille extends CommandeProduit
         $this->boissonTaille = $boissonTaille;
 
         return $this;
+    }
+
+    public function getProduit()
+    {
+        $this->produit = $this->boissonTaille;
+        return $this->produit;
     }
 
 }

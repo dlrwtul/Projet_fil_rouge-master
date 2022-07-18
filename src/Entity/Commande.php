@@ -56,19 +56,19 @@ class Commande
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["commande:read", "livraison:write"])]
+    #[Groups(["commande:read", "livraison:write","ticket:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(["commande:read","livraison:read"])]
+    #[Groups(["commande:read","livraison:read","ticket:read"])]
     private $numero;
 
     #[ORM\Column(type: 'datetime')]
-    #[Groups(["commande:read","livraison:read"])]
+    #[Groups(["commande:read","livraison:read","ticket:read"])]
     private $createdAt;
 
     #[ORM\Column(type: 'float')]
-    #[Groups(["commande:read","livraison:read"])]
+    #[Groups(["commande:read","livraison:read","ticket:read"])]
     private $montant;
 
     #[ORM\Column(type: 'boolean',nullable:false)]
@@ -132,8 +132,11 @@ class Commande
     private $commandeMenuBoissonTailles;
 
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: CommandeProduit::class)]
-    #[Groups(["commande:read"])]
+    #[Groups(["commande:read","ticket:read"])]
     private $commandeProduits;
+
+    #[ORM\OneToOne(mappedBy: 'commande', targetEntity: Ticket::class, cascade: ['persist', 'remove'])]
+    private $ticket;
 
 
     public function __construct()
@@ -470,6 +473,28 @@ class Commande
                 $commandeProduit->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTicket(): ?Ticket
+    {
+        return $this->ticket;
+    }
+
+    public function setTicket(?Ticket $ticket): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($ticket === null && $this->ticket !== null) {
+            $this->ticket->setCommande(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($ticket !== null && $ticket->getCommande() !== $this) {
+            $ticket->setCommande($this);
+        }
+
+        $this->ticket = $ticket;
 
         return $this;
     }
