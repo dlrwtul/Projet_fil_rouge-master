@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
                 'multipart' => ['multipart/form-data'],
             ],
         ],
-        'get'
+        'get'=> ["security" => "is_granted('ROLE_GESTIONNAIRE')"]
     ],
     itemOperations: [
         'get' ,

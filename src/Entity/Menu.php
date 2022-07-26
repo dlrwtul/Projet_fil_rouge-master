@@ -32,7 +32,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
                 'multipart' => ['multipart/form-data'],
             ],
         ],
-        'get'
+        'get'=> ["security" => "is_granted('ROLE_GESTIONNAIRE')"]
     ],
     itemOperations: [
         'get',
