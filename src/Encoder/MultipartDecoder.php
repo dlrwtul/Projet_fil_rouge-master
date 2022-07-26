@@ -3,6 +3,7 @@
 
 namespace App\Encoder;
 
+use App\Service\TransformImageService;
 use Doctrine\DBAL\Types\BlobType;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
@@ -13,7 +14,7 @@ final class MultipartDecoder implements DecoderInterface
 {
     public const FORMAT = 'multipart';
 
-    public function __construct(private RequestStack $requestStack) {}
+    public function __construct(private RequestStack $requestStack,private TransformImageService $tis) {}
     
     /**
      * {@inheritdoc}
@@ -26,7 +27,8 @@ final class MultipartDecoder implements DecoderInterface
         }
         
         //dd($request);
-        //dd(file_get_contents($request->files->all()["file"]));
+        //$source = imagecreatefrompng($image_path);
+        dd(file_get_contents($request->files->all()["file"]));
         //dd($request->request->all());
         //$file = $request->files->all()["file"];
         //$blob = new BlobType();
