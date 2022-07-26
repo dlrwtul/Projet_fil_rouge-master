@@ -62,6 +62,9 @@ class Produit
 
     public function __construct() {
         $this->isEtat = true;
+        $type = \get_called_class();
+        $type = explode("App/Entity/", $type)[0];
+        $this->setType($type);
     }
 
     public function getId(): ?int
