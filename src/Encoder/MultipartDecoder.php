@@ -14,7 +14,7 @@ final class MultipartDecoder implements DecoderInterface
     public const FORMAT = 'multipart';
 
     public function __construct(private RequestStack $requestStack) {}
-
+    
     /**
      * {@inheritdoc}
      */
@@ -25,13 +25,13 @@ final class MultipartDecoder implements DecoderInterface
             $request->request->set('prix',floatval($request->request->get('prix')));
         }
         
+        //dd($request);
         //dd(file_get_contents($request->files->all()["file"]));
         //dd($request->request->all());
         //$file = $request->files->all()["file"];
         //$blob = new BlobType();
         //$thumbed = base64_encode(fread(fopen($file, "r"),64));
         //dd($thumbed);
-        //dd($request);
 
         if (!$request) {
             return null;

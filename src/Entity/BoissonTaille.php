@@ -53,7 +53,6 @@ class BoissonTaille
 
     public function __construct()
     {
-        $this->type = 'boisson';
         $this->menuBoissonTailles = new ArrayCollection();
         $this->commandeMenuBoissonTailles = new ArrayCollection();
     }

@@ -58,7 +58,6 @@ class Burger extends Produit
 
     public function __construct()
     {
-        $this->type = 'burger';
         $this->menuBurgers = new ArrayCollection();
         $this->commandeBurgers = new ArrayCollection();
     }

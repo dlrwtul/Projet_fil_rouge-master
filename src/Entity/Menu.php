@@ -89,7 +89,6 @@ class Menu extends Produit
     public function __construct()
     {
         parent::__construct();
-        $this->type = 'menu';
         $this->menuBurgers = new ArrayCollection();
         $this->menuTailles = new ArrayCollection();
         $this->menuPortionFrites = new ArrayCollection();
