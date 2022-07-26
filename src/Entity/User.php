@@ -25,7 +25,6 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
             'method' => 'POST',
             'path' => '/users/register',
             'controller' => RegistrationsController::class,
-            "security" => "is_granted('ROLE_GESTIONNAIRE')",
         ],
         'verify_mail' => [
             'method' => 'PATCH',
