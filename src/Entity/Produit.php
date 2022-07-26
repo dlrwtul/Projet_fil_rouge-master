@@ -82,7 +82,6 @@ class Produit
 
     public function getImage()
     {
-        dd($this->image);
         return base64_encode(stream_get_contents($this->image));
     }
 
