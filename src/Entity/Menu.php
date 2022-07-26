@@ -23,11 +23,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[ApiResource(
     //input: MenuInput::class,
     //output: DtoMenuOutput::class,
-    attributes: ["security" => "is_granted('ROLE_GESTIONNAIRE')"],
     denormalizationContext: ['groups' => ['menu:write']],
     normalizationContext: ['groups' => ['menu:read',"product:read"]],
     collectionOperations: [
-        'post' => [           
+        'post' => [    
+            "security" => "is_granted('ROLE_GESTIONNAIRE')",       
             'input_formats' => [
                 'multipart' => ['multipart/form-data'],
             ],
@@ -37,13 +37,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     itemOperations: [
         'get',
         'put' => [
+            "security" => "is_granted('ROLE_GESTIONNAIRE')",  
             'method' => 'POST',
             'controller' => EditProduitAction::class,
             'input_formats' => [
                 'multipart' => ['multipart/form-data'],
             ],
         ],
-        'delete'
+        'delete'=> ["security" => "is_granted('ROLE_GESTIONNAIRE')"]
     ]
 )]
 

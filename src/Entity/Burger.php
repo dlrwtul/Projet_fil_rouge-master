@@ -15,11 +15,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: BurgerRepository::class)]
 #[ApiResource(
-    attributes: ["security" => "is_granted('ROLE_GESTIONNAIRE')"],
     denormalizationContext: ['groups' => ['product:write']],
     normalizationContext: ['groups' => ['product:read']],
     collectionOperations: [
         'post' => [
+            "security" => "is_granted('ROLE_GESTIONNAIRE')",
             'input_formats' => [
                 'multipart' => ['multipart/form-data'],
             ],
@@ -29,13 +29,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
     itemOperations: [
         'get' ,
         'put'=> [
+            "security" => "is_granted('ROLE_GESTIONNAIRE')",
             'method' => 'POST',
             'controller' => EditProduitAction::class,
             'input_formats' => [
                 'multipart' => ['multipart/form-data'],
             ],
         ],
-        'delete'
+        'delete' => ["security" => "is_granted('ROLE_GESTIONNAIRE')",]
     ]
 )]
 

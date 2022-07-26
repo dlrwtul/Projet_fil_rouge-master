@@ -38,6 +38,8 @@ security:
         - { path: ^/api/users/register, roles: PUBLIC_ACCESS }
         - { path: ^/api/catalogues, roles: PUBLIC_ACCESS }
         - { path: ^/api/complements, roles: PUBLIC_ACCESS }
+        # - { path: ^/api/complements, roles: PUBLIC_ACCESS }
+        # - { path: ^/api/complements, roles: PUBLIC_ACCESS }
         - { path: ^/api$, roles: PUBLIC_ACCESS }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
