@@ -65,7 +65,7 @@ class Produit
         $type = \get_called_class();
         $type = explode("App/Entity/", $type)[0];
         dd($type);
-        $this->setType($type);
+        // $this->setType($type);
     }
 
     public function getId(): ?int
