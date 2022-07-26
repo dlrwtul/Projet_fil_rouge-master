@@ -37,14 +37,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     itemOperations: [
         'get',
         'put' => [
-            "security" => "is_granted('ROLE_GESTIONNAIRE')",  
+            "security" => "is_granted('ROLE_GESTIONNAIRE')",   
             'method' => 'POST',
             'controller' => EditProduitAction::class,
             'input_formats' => [
                 'multipart' => ['multipart/form-data'],
             ],
         ],
-        'delete'=> ["security" => "is_granted('ROLE_GESTIONNAIRE')"]
+        'delete'=> ["security" => "is_granted('ROLE_GESTIONNAIRE')",]
     ]
 )]
 
