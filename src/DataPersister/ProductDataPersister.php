@@ -48,7 +48,6 @@ class ProductDataPersister implements DataPersisterInterface {
 
         $this->entityManager->persist($data);
         $this->entityManager->flush();
-        dd($data->getType());
         return $data;
         
     }
