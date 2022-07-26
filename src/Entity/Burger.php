@@ -13,6 +13,8 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+use function PHPSTORM_META\type;
+
 #[ORM\Entity(repositoryClass: BurgerRepository::class)]
 #[ApiResource(
     denormalizationContext: ['groups' => ['product:write']],
@@ -54,6 +56,7 @@ class Burger extends Produit
 
     public function __construct()
     {
+        $this->type = 'burger';
         $this->menuBurgers = new ArrayCollection();
         $this->commandeBurgers = new ArrayCollection();
     }

@@ -31,7 +31,6 @@ class ProductDataPersister implements DataPersisterInterface {
 
     public function persist($data)
     {       
-        dd($data);  
         if ($data->getFile() != null) {
             $data->setImage($this->fileUploader->upload($data->getFile()));
         }

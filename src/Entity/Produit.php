@@ -8,13 +8,14 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 //#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 #[ORM\InheritanceType("JOINED")]
-#[ORM\DiscriminatorColumn(name: "type", type: "string")]
+#[ORM\DiscriminatorColumn(name: "class_type", type: "string")]
 #[ORM\DiscriminatorMap(["burger" => "Burger", "boisson" => "Boisson", "portion_frites" => "PortionFrites","menu" => "Menu"])]
 
 class Produit
@@ -39,6 +40,7 @@ class Produit
     #[Groups("product:write","product:read","taille:read","commande:read","menu:read")]
     protected $prix;
 
+    #[SerializedName("image")]
     #[Groups(["product:write"])]
     #[Assert\File(
         maxSize: '10k',
@@ -53,6 +55,9 @@ class Produit
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'produits')]
     private $user;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $type = null;
 
     public function __construct() {
         $this->isEtat = true;
@@ -131,6 +136,18 @@ class Produit
     public function setFile(?object $file): self
     {
         $this->file = $file;
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
+
         return $this;
     }
 
