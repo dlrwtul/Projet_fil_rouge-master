@@ -42,12 +42,9 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
     ]
 )]
 
-/**
- * @ORM\Table(name="gestionnaire")
-*/
 #[ORM\InheritanceType("JOINED")]
 #[ORM\DiscriminatorColumn(name: "type", type: "string")]
-#[ORM\DiscriminatorMap(["gestionnaire" , "User","client" => "Client", "livreur" => "Livreur"])]
+#[ORM\DiscriminatorMap(["user" , "User","client" => "Client", "livreur" => "Livreur"])]
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
