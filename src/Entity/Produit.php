@@ -142,7 +142,7 @@ class Produit
     public function getType(): string
     {
         $type = \get_called_class();
-        $type = explode("App/Entity/", $type)[0];
+        $type = explode("App\Entity\", $type)[0];
         return $type;
     }
 
