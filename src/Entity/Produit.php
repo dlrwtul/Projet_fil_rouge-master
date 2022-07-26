@@ -48,7 +48,7 @@ class Produit
     #[SerializedName("image")]
     #[Groups(["product:write"])]
     #[Assert\File(
-        maxSize: '10k',
+        maxSize: '50k',
         maxSizeMessage:"max size (10k)",
         mimeTypes: ['image/*'],
         mimeTypesMessage: 'Uploaded file must be an image',
