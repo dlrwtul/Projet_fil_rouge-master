@@ -10,6 +10,7 @@ use App\Controller\RegistrationsController;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\MappedSuperclass;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -43,10 +44,11 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
     ]
 )]
 
-#[ORM\Table(name:"gestionnaire")]
+#[MappedSuperclass()]
 #[ORM\InheritanceType("JOINED")]
 #[ORM\DiscriminatorColumn(name: "type", type: "string")]
-#[ORM\DiscriminatorMap(["gestionnaire" , "gestionnaire","client" => "Client", "livreur" => "Livreur"])]
+#[ORM\DiscriminatorMap(["user" , "User","client" => "Client", "livreur" => "Livreur"])]
+#[ORM\Table(name:"gestionnaire")]
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
