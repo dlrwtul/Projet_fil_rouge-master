@@ -56,7 +56,7 @@ class Produit
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'produits')]
     private $user;
 
-    #[ORM\Column(length: 255,nullable: true)]
+    #[ORM\Column(length: 255)]
     #[Groups("product:read","taille:read","commande:read","menu:read")]
     private string $type;
 
@@ -64,6 +64,7 @@ class Produit
         $this->isEtat = true;
         $type = \get_called_class();
         $type = explode("App/Entity/", $type)[0];
+        dd($type);
         $this->setType($type);
     }
 
@@ -143,12 +144,12 @@ class Produit
         return $this;
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
 
-    public function setType(?string $type): self
+    public function setType(string $type): self
     {
         $this->type = $type;
 
