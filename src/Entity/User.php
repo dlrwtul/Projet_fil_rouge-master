@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ORM\Table;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use App\Controller\VerifyEmailAction;
@@ -41,12 +42,11 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
         ]
     ]
 )]
-/**
- * @ORM\Table(name="gestionnaire")
-*/
+
+#[ORM\Table(name:"gestionnaire")]
 #[ORM\InheritanceType("JOINED")]
 #[ORM\DiscriminatorColumn(name: "type", type: "string")]
-#[ORM\DiscriminatorMap(["user" , "User","client" => "Client", "livreur" => "Livreur"])]
+#[ORM\DiscriminatorMap(["gestionnaire" , "gestionnaire","client" => "Client", "livreur" => "Livreur"])]
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
