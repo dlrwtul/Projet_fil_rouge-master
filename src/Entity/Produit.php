@@ -142,7 +142,8 @@ class Produit
     public function getType(): string
     {
         $type = \get_called_class();
-        $type = explode("\\", $type)[0];
+        $type = explode("\\", $type);
+        $type = $type[count($type) - 1];
         return $type;
     }
 
