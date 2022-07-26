@@ -28,7 +28,7 @@ final class MultipartDecoder implements DecoderInterface
         
         //dd($request);
         //$source = imagecreatefrompng($image_path);
-        dd(file_get_contents($request->files->all()["file"]));
+        dd($request->files->all()["file"]);
         //dd($request->request->all());
         //$file = $request->files->all()["file"];
         //$blob = new BlobType();
