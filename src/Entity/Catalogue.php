@@ -30,11 +30,11 @@ class Catalogue
 
     private $id;
 
-    #[Groups("product:write")]
+    #[Groups("product:read")]
     #[ApiSubresource]
     private $burgers;
 
-    #[Groups("product:write")]
+    #[Groups("product:read")]
     #[ApiSubresource]
     private $menus;
 
