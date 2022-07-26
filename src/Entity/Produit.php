@@ -56,9 +56,9 @@ class Produit
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'produits')]
     private $user;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     #[Groups("product:read","taille:read","commande:read","menu:read")]
-    private ?string $type = null;
+    private string $type;
 
     public function __construct() {
         $this->isEtat = true;
