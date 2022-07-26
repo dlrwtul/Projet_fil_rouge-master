@@ -57,6 +57,7 @@ class Produit
     private $user;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups("product:read","taille:read","commande:read","menu:read")]
     private ?string $type = null;
 
     public function __construct() {

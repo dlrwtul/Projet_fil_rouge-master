@@ -17,7 +17,7 @@ use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
         'get' => [
             'method' => 'GET',
             'path' => '/catalogues/{id}',
-            'normalization_context' => ['groups' => ["product:write"]]
+            'normalization_context' => ['groups' => ["product:read"]]
         ]
     ],
     collectionOperations: [
