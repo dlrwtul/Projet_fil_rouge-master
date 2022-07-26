@@ -32,13 +32,13 @@ class Complement
 
     #[Groups("product:write")]
     #[ApiSubresource]
-    private $boissons;
+    private $boissonTailles;
 
     public function __construct(?int $id)
     {
         $this->id =$id;
         $this->portionFrites = new ArrayCollection();
-        $this->boissons = new ArrayCollection();
+        $this->boissonTailles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,17 +65,17 @@ class Complement
 
 
     /**
-     * @return Collection<int, Boisson>
+     * @return Collection<int, BoissonTaille>
      */
-    public function getBoissons(): Collection
+    public function getBoissonTailles(): Collection
     {
-        return $this->boissons;
+        return $this->boissonTailles;
     }
 
-    public function addBoisson(Boisson $boisson): self
+    public function addBoissonTaille(BoissonTaille $boissonTaille): self
     {
-        if (!$this->boissons->contains($boisson)) {
-            $this->boissons[] = $boisson;
+        if (!$this->boissonTailles->contains($boissonTaille)) {
+            $this->boissonTailles[] = $boissonTaille;
         }
 
         return $this;

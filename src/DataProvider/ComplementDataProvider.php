@@ -2,21 +2,21 @@
 
 namespace App\DataProvider;
 
+use App\Entity\Complement;
+use App\Repository\BoissonTailleRepository;
 use App\Repository\PortionFritesRepository;
 use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
-use App\Entity\Complement;
-use App\Repository\BoissonRepository;
 
 final class ComplementDataProvider implements ItemDataProviderInterface, RestrictedDataProviderInterface
 {
     private $portionFritesRepository;
-    private $boissonRepository;
+    private $boissonTailleRepository;
 
-    public function __construct(PortionFritesRepository $portionFritesRepository, boissonRepository $boissonRepository)
+    public function __construct(PortionFritesRepository $portionFritesRepository, BoissonTailleRepository $boissonTailleRepository)
     {
         $this->portionFritesRepository = $portionFritesRepository;
-        $this->boissonRepository = $boissonRepository;
+        $this->boissonTailleRepository = $boissonTailleRepository;
     }
 
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
@@ -32,8 +32,8 @@ final class ComplementDataProvider implements ItemDataProviderInterface, Restric
             $Complement->addPortionFrite($portion);
         }
 
-        foreach ($this->boissonRepository->findBy(array('isEtat' => true)) as $boisson) {
-            $Complement->addBoisson($boisson);
+        foreach ($this->boissonTailleRepository->findBy(array('isEtat' => true)) as $boissonTaille) {
+            $Complement->addBoissonTaille($boissonTaille);
         }
         return $Complement;
     }
