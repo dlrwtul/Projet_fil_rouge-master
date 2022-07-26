@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProduitRepository;
 use Doctrine\Common\Collections\Collection;
@@ -37,9 +38,13 @@ class Produit
 
     #[ORM\Column(type: 'float',nullable: true)]
     #[Assert\Positive(message:"prix superieure a 0")]
-    #[Groups("product:write","product:read","taille:read","commande:read","menu:read")]
+    #[Groups(["product:write","product:read","taille:read","commande:read","menu:read"])]
     protected $prix;
-
+    
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(["product:write","product:read","taille:read","commande:read","menu:read"])]
+    private ?string $description = null;
+    
     #[SerializedName("image")]
     #[Groups(["product:write"])]
     #[Assert\File(
@@ -58,6 +63,7 @@ class Produit
 
     #[Groups("product:read","taille:read","commande:read","menu:read")]
     private string $type;
+
 
     public function __construct() {
         $this->isEtat = true;
@@ -150,6 +156,18 @@ class Produit
     public function setType(string $type): self
     {
         $this->type = $type;
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
         return $this;
     }
 
