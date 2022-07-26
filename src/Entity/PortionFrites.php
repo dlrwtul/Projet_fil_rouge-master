@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Controller\EditProduitAction;
 use App\Repository\PortionFritesRepository;
+use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: PortionFritesRepository::class)]
+#[UniqueEntity('nom')]
 #[ApiResource(
     attributes: ["security" => "is_granted('ROLE_GESTIONNAIRE')"],
     denormalizationContext: ['groups' => ['product:write']],

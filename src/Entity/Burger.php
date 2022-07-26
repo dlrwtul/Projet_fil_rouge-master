@@ -6,16 +6,18 @@ use App\Entity\Menu;
 use App\Entity\Produit;
 use App\Entity\Catalogue;
 use Doctrine\ORM\Mapping as ORM;
+use function PHPSTORM_META\type;
 use App\Repository\BurgerRepository;
 use App\Controller\EditProduitAction;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Serializer\Annotation\Groups;
 
-use function PHPSTORM_META\type;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: BurgerRepository::class)]
+#[UniqueEntity('nom')]
 #[ApiResource(
     denormalizationContext: ['groups' => ['product:write']],
     normalizationContext: ['groups' => ['product:read']],
