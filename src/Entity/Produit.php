@@ -143,7 +143,7 @@ class Produit
     {
         $type = \get_called_class();
         $type = explode("App/Entity/", $type)[0];
-        return $this->type;
+        return $type;
     }
 
     public function setType(string $type): self
