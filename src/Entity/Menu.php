@@ -35,7 +35,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
         'get'
     ],
     itemOperations: [
-        'get' => ["security" => "is_granted('ROLE_VISITER')"],
+        'get',
         'put' => [
             'method' => 'POST',
             'controller' => EditProduitAction::class,

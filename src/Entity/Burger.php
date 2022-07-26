@@ -27,7 +27,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         'get'
     ],
     itemOperations: [
-        'get' => ["security" => "is_granted('ROLE_VISITER')"],
+        'get' ,
         'put'=> [
             'method' => 'POST',
             'controller' => EditProduitAction::class,
