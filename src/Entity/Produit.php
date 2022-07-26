@@ -49,7 +49,7 @@ class Produit
     #[Groups(["product:write"])]
     #[Assert\File(
         maxSize: '50k',
-        maxSizeMessage:"max size (10k)",
+        maxSizeMessage:"max size (50k)",
         mimeTypes: ['image/*'],
         mimeTypesMessage: 'Uploaded file must be an image',
     )]
