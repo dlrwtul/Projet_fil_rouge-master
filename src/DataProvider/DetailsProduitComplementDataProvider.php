@@ -2,16 +2,10 @@
 
 namespace App\DataProvider;
 
-use App\Entity\Complement;
-use App\Repository\BoissonTailleRepository;
-use App\Repository\PortionFritesRepository;
 use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use App\Entity\DetailsProduitComplement;
-use App\Repository\BurgerRepository;
-use App\Repository\MenuRepository;
-use App\Service\prepareDetailsProduitService;
-use Symfony\Component\HttpFoundation\Response;
+use App\Service\PrepareDetailsProduitService;
 
 final class DetailsProduitComplementDataProvider implements ItemDataProviderInterface, RestrictedDataProviderInterface
 {
