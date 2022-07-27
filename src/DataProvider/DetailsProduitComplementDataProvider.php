@@ -44,7 +44,7 @@ final class DetailsProduitComplementDataProvider implements ItemDataProviderInte
 
         $produit = $this->burgerRepository->findOneBy(['id'=>$id]);
 
-        dd($produit,$detailsComplement);
+        dd($produit,$detailsComplement,"fi leuh");
 
     }
 
