@@ -52,11 +52,15 @@ class PortionFrites extends Produit
     #[ORM\OneToMany(mappedBy: 'portionFrites', targetEntity: CommandePortionFrites::class)]
     private $commandePortionFrites;
 
+    #[ORM\ManyToMany(targetEntity: DetailsProduitComplement::class, mappedBy: 'portionFrites')]
+    private Collection $detailsProduitComplements;
+
     public function __construct()
     {
         parent::__construct();
         $this->menuPortionFrites = new ArrayCollection();
         $this->commandePortionFrites = new ArrayCollection();
+        $this->detailsProduitComplements = new ArrayCollection();
     }
 
     public function getMenu(): ?Menu
@@ -126,6 +130,33 @@ class PortionFrites extends Produit
             if ($commandePortionFrite->getPortionFrites() === $this) {
                 $commandePortionFrite->setPortionFrites(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DetailsProduitComplement>
+     */
+    public function getDetailsProduitComplements(): Collection
+    {
+        return $this->detailsProduitComplements;
+    }
+
+    public function addDetailsProduitComplement(DetailsProduitComplement $detailsProduitComplement): self
+    {
+        if (!$this->detailsProduitComplements->contains($detailsProduitComplement)) {
+            $this->detailsProduitComplements[] = $detailsProduitComplement;
+            $detailsProduitComplement->addPortionFrite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailsProduitComplement(DetailsProduitComplement $detailsProduitComplement): self
+    {
+        if ($this->detailsProduitComplements->removeElement($detailsProduitComplement)) {
+            $detailsProduitComplement->removePortionFrite($this);
         }
 
         return $this;
