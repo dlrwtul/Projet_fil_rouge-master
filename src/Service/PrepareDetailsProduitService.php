@@ -44,7 +44,7 @@ class PrepareDetailsProduitService
         } elseif ($menu != null) {
             $detailsComplement->setMenu($menu);
         } else {
-            return new Response("ce produit n'existe pas",Response::HTTP_BAD_REQUEST);
+            return null;
         }
 
         return $detailsComplement;
