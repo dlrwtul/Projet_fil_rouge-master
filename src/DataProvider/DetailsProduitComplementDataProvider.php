@@ -10,21 +10,16 @@ use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use App\Entity\DetailsProduitComplement;
 use App\Repository\BurgerRepository;
 use App\Repository\MenuRepository;
+use App\Service\prepareDetailsProduitService;
 use Symfony\Component\HttpFoundation\Response;
 
 final class DetailsProduitComplementDataProvider implements ItemDataProviderInterface, RestrictedDataProviderInterface
 {
-    private $portionFritesRepository;
-    private $boissonTailleRepository;
-    private $burgerRepository;
-    private $menuRepository;
+    private $detailsService;
 
-    public function __construct(PortionFritesRepository $portionFritesRepository, BoissonTailleRepository $boissonTailleRepository,BurgerRepository $burgerRepository,MenuRepository $menuRepository)
+    public function __construct(PrepareDetailsProduitService $detailsService)
     {
-        $this->portionFritesRepository = $portionFritesRepository;
-        $this->boissonTailleRepository = $boissonTailleRepository;
-        $this->burgerRepository = $burgerRepository;
-        $this->menuRepository = $menuRepository;
+        $this->detailsService = $detailsService;
     }
 
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
@@ -34,30 +29,7 @@ final class DetailsProduitComplementDataProvider implements ItemDataProviderInte
 
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?DetailsProduitComplement
     {
-        // Retrieve the blog post item from somewhere then return it or null if not found
-
-        $detailsComplement = new DetailsProduitComplement();
-
-        foreach ($this->portionFritesRepository->findBy(array('isEtat' => true)) as $portion) {
-            $detailsComplement->addPortionFrite($portion);
-        }
-
-        foreach ($this->boissonTailleRepository->findBy(array('isEtat' => true)) as $boissonTaille) {
-            $detailsComplement->addBoissonTaille($boissonTaille);
-        }
-
-        $burger = $this->burgerRepository->findOneBy(['id'=>$id]);
-        $menu = $this->menuRepository->findOneBy(['id'=>$id]);
-
-        if ($burger != null) {
-            $detailsComplement->setBurger($burger);
-        } elseif ($menu != null) {
-            $detailsComplement->setMenu($menu);
-        } else {
-            
-        }
-
-        dd($detailsComplement,"fi leuh",$id);
+        $detailsComplement = $this->detailsService->getDetailsProduit($id);
         return $detailsComplement;
 
     }
