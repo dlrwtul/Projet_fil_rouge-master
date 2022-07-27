@@ -30,10 +30,10 @@ class DetailsProduitComplement
     private ?Menu $menu = null;
 
     #[Groups("detailsProduitComplement:read")]
-    private  $portionFrites;
+    private array $portionFrites;
 
     #[Groups("detailsProduitComplement:read")]
-    private  $boissonTailles;
+    private array $boissonTailles;
 
     public function __construct()
     {
@@ -76,9 +76,7 @@ class DetailsProduitComplement
 
     public function addPortionFrite(PortionFrites $portionFrite): self
     {
-        if (!$this->portionFrites->contains($portionFrite)) {
-            $this->portionFrites[] = $portionFrite;
-        }
+        $this->portionFrites[] = $portionFrite;
         return $this;
     }
 
@@ -89,9 +87,7 @@ class DetailsProduitComplement
 
     public function addBoissonTaille(BoissonTaille $boissonTaille): self
     {
-        if (!$this->boissonTailles->contains($boissonTaille)) {
-            $this->boissonTailles[] = $boissonTaille;
-        }
+        $this->boissonTailles[] = $boissonTaille;
 
         return $this;
     }

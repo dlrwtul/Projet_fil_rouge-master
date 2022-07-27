@@ -29,10 +29,10 @@ class PrepareDetailsProduitService
         $detailsComplement = new DetailsProduitComplement();
 
         foreach ($this->portionFritesRepository->findBy(array('isEtat' => true)) as $portion) {
-            dump($portion);
-            //$detailsComplement->addPortionFrite($portion);
+            
+            $detailsComplement->addPortionFrite($portion);
         }
-        dd("fi leuh");
+
         foreach ($this->boissonTailleRepository->findBy(array('isEtat' => true)) as $boissonTaille) {
             $detailsComplement->addBoissonTaille($boissonTaille);
         }
