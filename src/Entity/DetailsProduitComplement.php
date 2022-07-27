@@ -2,9 +2,7 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 
@@ -32,15 +30,14 @@ class DetailsProduitComplement
     private ?Menu $menu = null;
 
     #[Groups("detailsProduitComplement:read")]
-    private Collection $portionFrites;
+    private  $portionFrites;
 
     #[Groups("detailsProduitComplement:read")]
-    private Collection $boissonTailles;
+    private  $boissonTailles;
 
     public function __construct()
     {
-        $this->portionFrites = new ArrayCollection();
-        $this->boissonTailles = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -72,7 +69,7 @@ class DetailsProduitComplement
         return $this;
     }
 
-    public function getPortionFrites(): Collection
+    public function getPortionFrites()
     {
         return $this->portionFrites;
     }
@@ -85,8 +82,8 @@ class DetailsProduitComplement
 
         return $this;
     }
-    
-    public function getBoissonTailles(): Collection
+
+    public function getBoissonTailles()
     {
         return $this->boissonTailles;
     }
