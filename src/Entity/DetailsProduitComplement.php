@@ -72,9 +72,6 @@ class DetailsProduitComplement
         return $this;
     }
 
-    /**
-     * @return Collection<int, PortionFrites>
-     */
     public function getPortionFrites(): Collection
     {
         return $this->portionFrites;
@@ -88,10 +85,7 @@ class DetailsProduitComplement
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, BoissonTaille>
-     */
+    
     public function getBoissonTailles(): Collection
     {
         return $this->boissonTailles;
