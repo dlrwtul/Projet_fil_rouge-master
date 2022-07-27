@@ -8,6 +8,7 @@ class MenuDoublonsValidator
 {
     public static function validate($object, ExecutionContextInterface $context, $payload)
     {
+        dd($object);
         if (self::checkDoublons($object,"getMenuBurgers","getBurger") ) {
             $context->buildViolation("il y'a des Burgers identiques")
             ->atPath('menuBurgers')
