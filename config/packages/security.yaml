@@ -37,6 +37,7 @@ security:
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/catalogues, roles: PUBLIC_ACCESS }
         - { path: ^/api/complements, roles: PUBLIC_ACCESS }
+        - { path: ^/api/detailsProduitComplements, roles: PUBLIC_ACCESS }
         - { path: ^/api/menus, roles: PUBLIC_ACCESS }
         - { path: ^/api/burgers, roles: PUBLIC_ACCESS }
         - { path: ^/api$, roles: PUBLIC_ACCESS }
