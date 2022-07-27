@@ -39,7 +39,6 @@ class DetailsProduitComplement
 
     public function __construct()
     {
-        $this->boissons = new ArrayCollection();
         $this->portionFrites = new ArrayCollection();
         $this->boissonTailles = new ArrayCollection();
     }
