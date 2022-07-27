@@ -28,19 +28,4 @@ final class DetailsProduitComplementDataProvider implements ItemDataProviderInte
 
     }
 
-    public function getCollection(string $resourceClass, string $operationName = null): ?array {
-
-        $Complement = new DetailsProduitComplement();
-
-        foreach ($this->portionFritesRepository->findBy(array('isEtat' => true)) as $portion) {
-            $Complement->addPortionFrite($portion);
-        }
-
-        foreach ($this->boissonTailleRepository->findBy(array('isEtat' => true)) as $boissonTaille) {
-            $Complement->addBoissonTaille($boissonTaille);
-        }
-
-        return [];
-
-    }
 }
