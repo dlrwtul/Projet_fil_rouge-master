@@ -79,7 +79,6 @@ class DetailsProduitComplement
         if (!$this->portionFrites->contains($portionFrite)) {
             $this->portionFrites[] = $portionFrite;
         }
-
         return $this;
     }
 
