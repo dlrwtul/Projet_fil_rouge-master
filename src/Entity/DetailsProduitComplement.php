@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         'get' => [
             'method' => 'GET',
             'path' => '/detailsProduitComplements/{id}',
-            'normalization_context' => ['groups' => ["detailsProduitComplement:read"]]
+            'normalization_context' => ['groups' => ["detailsProduitComplement:read","menu:read","product:read"]]
         ]
     ],
     collectionOperations: [
