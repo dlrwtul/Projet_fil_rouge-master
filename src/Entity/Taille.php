@@ -52,6 +52,7 @@ class Taille
     private $menuTailles;
 
     #[ORM\OneToMany(mappedBy: 'taille', targetEntity: BoissonTaille::class)]
+    #[Groups(["taille:write","taille:read","boisson:read","menu:read","boissonTaille:read","commande:read"])]
     #[ApiSubresource]
     private $boissonTailles;
 
