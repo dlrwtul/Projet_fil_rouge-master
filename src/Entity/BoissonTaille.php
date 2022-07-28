@@ -19,7 +19,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[ORM\Entity(repositoryClass: BoissonTailleRepository::class)]
 #[UniqueEntity('nom')]
 #[ApiResource(
-    normalizationContext:["groups" => ["boissonTaille:read","enable_max_depth" => true]]
+    normalizationContext:["groups" => ["boissonTaille:read"]]
 )]
 class BoissonTaille
 {
@@ -43,7 +43,6 @@ class BoissonTaille
     #[ORM\Column(type: 'boolean')]
     private $isEtat = true;
 
-    #[MaxDepth(3)]
     #[ORM\ManyToOne(targetEntity: Boisson::class, inversedBy: 'boissonTailles')]
     #[Groups(["boissonTaille:read","commande:read","menu:read"])]
     private $boisson;
