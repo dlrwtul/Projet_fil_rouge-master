@@ -33,7 +33,7 @@ class Produit
     protected $nom;
 
     #[ORM\Column(type: 'blob')]
-    #[Groups(["product:read","product:read","commande:read","boisson:read","taille:read","boissonTaille:read"])]
+    #[Groups(["product:read","product:read","commande:read","boisson:read","taille:read","boissonTaille:rea"])]
     protected $image;
 
     #[ORM\Column(type: 'float',nullable: true)]
