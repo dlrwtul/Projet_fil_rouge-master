@@ -60,20 +60,20 @@ class Menu extends Produit
     protected ?File $file;
 
     #[ORM\OneToMany(mappedBy: 'menu', targetEntity: MenuBurger::class,cascade:['persist'])]
-    #[Groups(["menu:write","menu:read"])]
+    #[Groups(["menu:write","menu:read","detailsProduitComplement:read"])]
     #[Assert\Count(min:1)]
     #[Assert\Valid()]
     #[ApiSubresource]
     private $menuBurgers;
 
     #[ORM\OneToMany(mappedBy: 'menu', targetEntity: MenuTaille::class,cascade:['persist'])]
-    #[Groups(["menu:write","menu:read"])]
+    #[Groups(["menu:write","menu:read","detailsProduitComplement:read"])]
     #[Assert\Valid()]
     #[ApiSubresource]
     private $menuTailles;
 
     #[ORM\OneToMany(mappedBy: 'menu', targetEntity: MenuPortionFrites::class,cascade:['persist'])]
-    #[Groups(["menu:write","menu:read"])]
+    #[Groups(["menu:write","menu:read","detailsProduitComplement:read"])]
     #[Assert\Valid()]
     #[ApiSubresource]
     private $menuPortionFrites;

@@ -17,17 +17,17 @@ class MenuTaille
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["menu:read"])]
+    #[Groups(["menu:read","detailsProduitComplement:read"])]
     private $id;
 
     #[ORM\Column(type: 'integer')]
-    #[Groups(["menu:write","menu:read"])]
+    #[Groups(["menu:write","menu:read","detailsProduitComplement:read"])]
     #[Assert\Positive()]
     #[Assert\NotEqualTo(0)]
     private $quantite = 1;
 
     #[ORM\ManyToOne(targetEntity: Taille::class, inversedBy: 'menuTailles')]
-    #[Groups(["menu:write","menu:read"])]
+    #[Groups(["menu:write","menu:read","detailsProduitComplement:read"])]
     #[Assert\NotNull()]
     #[Assert\Type(Taille::class)]
     private $taille;
