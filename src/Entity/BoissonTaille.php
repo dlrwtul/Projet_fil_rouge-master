@@ -19,7 +19,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[ORM\Entity(repositoryClass: BoissonTailleRepository::class)]
 #[UniqueEntity('nom')]
 #[ApiResource(
-    normalizationContext:["groups" => ["boissonTaille:read"]]
+    normalizationContext:["groups" => ["boissonTaille:read","enable_max_depth" => true]]
 )]
 class BoissonTaille
 {
