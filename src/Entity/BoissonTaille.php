@@ -2,14 +2,17 @@
 
 namespace App\Entity;
 
+use App\Entity\Taille;
+use App\Entity\Boisson;
 use App\Service\EtatService;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\CommandeMenuBoissonTaille;
 use App\Repository\BoissonTailleRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
-use phpDocumentor\Reflection\Types\Nullable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -40,6 +43,7 @@ class BoissonTaille
     #[ORM\Column(type: 'boolean')]
     private $isEtat = true;
 
+    #[MaxDepth(3)]
     #[ORM\ManyToOne(targetEntity: Boisson::class, inversedBy: 'boissonTailles')]
     #[Groups(["boissonTaille:read","commande:read","menu:read"])]
     private $boisson;
