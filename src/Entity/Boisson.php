@@ -16,9 +16,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BoissonRepository::class)]
 #[ApiResource(
-    attributes: ["security" => "is_granted('ROLE_GESTIONNAIRE')","enable_max_depth"=>true],
+    attributes: ["security" => "is_granted('ROLE_GESTIONNAIRE')"],
     denormalizationContext: ['groups' => ['product:write',"boisson:write"]],
-    normalizationContext: ['groups' => ['boisson:read',"product:read"]],
+    normalizationContext: ['groups' => ['boisson:read',"product:read"],"enable_max_depth" => true],
     collectionOperations: [
         'post' => [
             'input_formats' => [
