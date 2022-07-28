@@ -30,7 +30,7 @@ class BoissonTaille
     private $nom;
 
     #[ORM\Column(type: 'integer')]
-    #[Groups(["boisson:read","boisson:write","boissonTaille:read","menu:read","detailsProduitComplement:read"])]
+    #[Groups(["boisson:read","boisson:write","boissonTaille:read","menu:read"])]
     #[Assert\Positive()]
     private $quantiteStock;
 
@@ -41,11 +41,11 @@ class BoissonTaille
     private $isEtat = true;
 
     #[ORM\ManyToOne(targetEntity: Boisson::class, inversedBy: 'boissonTailles')]
-    #[Groups(["boissonTaille:read","commande:read","menu:read","detailsProduitComplement:read"])]
+    #[Groups(["boissonTaille:read","commande:read","menu:read"])]
     private $boisson;
 
     #[ORM\ManyToOne(targetEntity: Taille::class, inversedBy: 'boissonTailles')]
-    #[Groups(["boisson:write","boisson:read","boissonTaille:read","commande:read","detailsProduitComplement:read"])]
+    #[Groups(["boisson:write","boisson:read","boissonTaille:read","commande:read"])]
     private $taille;
 
     #[ORM\OneToMany(mappedBy: 'boissonTaille', targetEntity: CommandeMenuBoissonTaille::class)]
