@@ -29,4 +29,6 @@ api_platform:
 
         pagination:
             items_per_page_parameter_name: parpage # Default value
+    eager_loading:
+        max_joins: 100
             
