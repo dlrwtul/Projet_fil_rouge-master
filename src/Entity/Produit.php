@@ -23,26 +23,26 @@ class Produit
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["menu:write","product:read","taille:read","commande:read","commande:write","boissonTaille:read","detailsProduitComplement:read"])]
+    #[Groups(["menu:write","product:read","taille:read","commande:read","commande:write","boissonTaille:read"])]
     protected $id;
 
     #[ORM\Column(type: 'string', length: 255,unique: true )]
     #[Assert\NotBlank(message:"Nom obligatoire")]
-    #[Groups(["product:read","product:write","taille:read","commande:read","boisson:read","boissonTaille:read","ticket:read","detailsProduitComplement:read"])]
+    #[Groups(["product:read","product:write","taille:read","commande:read","boisson:read","boissonTaille:read","ticket:read"])]
     protected $nom;
 
     #[MaxDepth(3)]
     #[ORM\Column(type: 'blob')]
-    #[Groups(["product:read","product:read","commande:read","boisson:read","taille:read","boissonTaille:read","detailsProduitComplement:read"])]
+    #[Groups(["product:read","product:read","commande:read","boisson:read","taille:read","boissonTaille:read"])]
     protected $image;
 
     #[ORM\Column(type: 'float',nullable: true)]
     #[Assert\Positive(message:"prix superieure a 0")]
-    #[Groups(["product:write","product:read","taille:read","commande:read","menu:read","detailsProduitComplement:read"])]
+    #[Groups(["product:write","product:read","taille:read","commande:read","menu:read"])]
     protected $prix;
     
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(["product:write","product:read","taille:read","commande:read","menu:read","detailsProduitComplement:read"])]
+    #[Groups(["product:write","product:read","taille:read","commande:read","menu:read"])]
     private ?string $description = null;
     
     #[SerializedName("image")]
@@ -61,7 +61,7 @@ class Produit
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'produits')]
     private $user;
 
-    #[Groups("product:read","taille:read","commande:read","menu:read","detailsProduitComplement:read")]
+    #[Groups("product:read","taille:read","commande:read","menu:read")]
     private string $type;
 
 
