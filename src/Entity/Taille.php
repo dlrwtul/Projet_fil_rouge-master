@@ -32,17 +32,17 @@ class Taille
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["taille:read","boisson:read","menu:read","boisson:write","commande:write","menu:write","boissonTaille:read","commande:read"])]
+    #[Groups(["taille:read","boisson:read","menu:read","boisson:write","commande:write","menu:write","boissonTaille:read","commande:read","detailsProduitComplement:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255,unique:true)]
     #[Assert\NotBlank(message:"libelle obligatoire")]
-    #[Groups(["taille:write","taille:read","boisson:read","menu:read","boissonTaille:read","commande:read"])]
+    #[Groups(["taille:write","taille:read","boisson:read","menu:read","boissonTaille:read","commande:read","detailsProduitComplement:read"])]
     private $libelle;
 
     #[ORM\Column(type: 'float')]
     #[Assert\NotBlank(message:"prix obligatoire")]
-    #[Groups(["taille:write","taille:read","boisson:read","menu:read","boissonTaille:read","commande:read"])]
+    #[Groups(["taille:write","taille:read","boisson:read","menu:read","boissonTaille:read","commande:read","detailsProduitComplement:read"])]
     private $prix;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
