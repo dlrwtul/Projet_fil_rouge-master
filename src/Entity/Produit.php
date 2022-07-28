@@ -31,7 +31,6 @@ class Produit
     #[Groups(["product:read","product:write","taille:read","commande:read","boisson:read","boissonTaille:read","ticket:read"])]
     protected $nom;
 
-    #[MaxDepth(3)]
     #[ORM\Column(type: 'blob')]
     #[Groups(["product:read","product:read","commande:read","boisson:read","taille:read","boissonTaille:read"])]
     protected $image;
