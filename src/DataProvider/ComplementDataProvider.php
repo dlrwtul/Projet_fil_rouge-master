@@ -26,15 +26,10 @@ final class ComplementDataProvider implements ItemDataProviderInterface, Restric
 
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?Complement
     {
-        // Retrieve the blog post item from somewhere then return it or null if not found
-        $Complement = new Complement($id);
-        foreach ($this->portionFritesRepository->findBy(array('isEtat' => true)) as $portion) {
-            $Complement->addPortionFrite($portion);
-        }
-
-        foreach ($this->boissonTailleRepository->findBy(array('isEtat' => true)) as $boissonTaille) {
-            $Complement->addBoissonTaille($boissonTaille);
-        }
-        return $Complement;
+        $complement = new Complement();
+        
+        $complement->portionFrites =  $this->portionFritesRepository->findBy(array('isEtat' => true)) ;
+        $complement->boissonTailles = $this->boissonTailleRepository->findBy(array('isEtat' => true)) ;
+        return $complement;
     }
 }

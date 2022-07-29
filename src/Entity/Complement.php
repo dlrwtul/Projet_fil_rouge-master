@@ -24,60 +24,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 class Complement
 {
-    private $id;
+    public $id;
 
     #[Groups("product:write")]
     #[ApiSubresource]
-    private $portionFrites;
+    public array $portionFrites;
 
     #[Groups("product:write")]
     #[ApiSubresource]
-    private $boissonTailles;
+    public array $boissonTailles;
 
-    public function __construct(?int $id)
-    {
-        $this->id =$id;
-        $this->portionFrites = new ArrayCollection();
-        $this->boissonTailles = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return Collection<int, PortionFrites>
-     */
-    public function getPortionFrites(): Collection
-    {
-        return $this->portionFrites;
-    }
-
-    public function addPortionFrite(PortionFrites $portionFrite): self
-    {
-        if (!$this->portionFrites->contains($portionFrite)) {
-            $this->portionFrites[] = $portionFrite;
-        }
-
-        return $this;
-    }
-
-
-    /**
-     * @return Collection<int, BoissonTaille>
-     */
-    public function getBoissonTailles(): Collection
-    {
-        return $this->boissonTailles;
-    }
-
-    public function addBoissonTaille(BoissonTaille $boissonTaille): self
-    {
-        if (!$this->boissonTailles->contains($boissonTaille)) {
-            $this->boissonTailles[] = $boissonTaille;
-        }
-
-        return $this;
-    }
 }

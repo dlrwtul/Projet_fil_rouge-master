@@ -28,72 +28,16 @@ use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
 class Catalogue
 {
 
-    private $id;
+    public int $id;
 
     #[Groups("product:read")]
     #[ApiSubresource]
-    private $burgers;
+    public array $burgers;
 
     #[Groups("product:read")]
     #[ApiSubresource]
-    private $menus;
+    public array $menus;
 
-    public function __construct(?int $id)
-    {
-        $this-> id= $id;
-        $this->burgers = new ArrayCollection();
-        $this->menus = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return Collection<int, Burger>
-     */
-    public function getBurgers(): Collection
-    {
-        return $this->burgers;
-    }
-
-    public function addBurger(Burger $burger): self
-    {
-        if (!$this->burgers->contains($burger)) {
-            $this->burgers[] = $burger;
-        }
-
-        return $this;
-    }
-
-    public function setBurgers(ArrayCollection $burgers): self
-    {
-        $this->burgers = $burgers;
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Menu>
-     */
-    public function getMenus(): Collection
-    {
-        return $this->menus;
-    }
-
-    public function addMenu(Menu $menu): self
-    {
-        if (!$this->menus->contains($menu)) {
-            $this->menus[] = $menu;
-        }
-
-        return $this;
-    }
-
-    public function setMenus(ArrayCollection $menus): self
-    {
-        $this->menus = $menus;
-        return $this;
-    }
+  
 
 }

@@ -28,22 +28,17 @@ class PrepareDetailsProduitService
     {
         $detailsComplement = new DetailsProduitComplement();
 
-        foreach ($this->portionFritesRepository->findBy(array('isEtat' => true)) as $portion) {
-            
-            $detailsComplement->addPortionFrite($portion);
-        }
+        $detailsComplement->portionFrites = $this->portionFritesRepository->findBy(array('isEtat' => true));
 
-        foreach ($this->boissonTailleRepository->findBy(array('isEtat' => true)) as $boissonTaille) {
-            $detailsComplement->addBoissonTaille($boissonTaille);
-        }
+        $detailsComplement->boissonTailles = $this->boissonTailleRepository->findBy(array('isEtat' => true));
 
-        $burger = $this->burgerRepository->findOneBy(['id'=>$id]);
-        $menu = $this->menuRepository->findOneBy(['id'=>$id]);
+        $burger = $this->burgerRepository->findOneBy(['id'=>$id,'isEtat' => true]);
+        $menu = $this->menuRepository->findOneBy(['id'=>$id,'isEtat' => true]);
 
         if ($burger != null) {
-            $detailsComplement->setBurger($burger);
+            $detailsComplement->burger = $burger;
         } elseif ($menu != null) {
-            $detailsComplement->setMenu($menu);
+            $detailsComplement->menu = $menu;
         } else {
             return null;
         }
