@@ -38,6 +38,11 @@ class Catalogue
     #[ApiSubresource]
     public array $menus;
 
+    public function __construct(int $id)
+    {
+        $this->id = $id;
+    }
+
   
 
 }

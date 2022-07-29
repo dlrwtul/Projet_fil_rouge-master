@@ -34,4 +34,9 @@ class Complement
     #[ApiSubresource]
     public array $boissonTailles;
 
+    public function __construct(int $id)
+    {
+        $this->id = $id;
+    }
+
 }

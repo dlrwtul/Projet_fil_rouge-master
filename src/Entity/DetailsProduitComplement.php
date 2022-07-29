@@ -35,4 +35,9 @@ class DetailsProduitComplement
     #[Groups("detailsProduitComplement:read")]
     public array $boissonTailles;
 
+    public function __construct(int $id)
+    {
+        $this->id = $id;
+    }
+
 }

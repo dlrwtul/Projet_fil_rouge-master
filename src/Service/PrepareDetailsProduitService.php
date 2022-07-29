@@ -26,7 +26,7 @@ class PrepareDetailsProduitService
 
     public function getDetailsProduit(int $id)
     {
-        $detailsComplement = new DetailsProduitComplement();
+        $detailsComplement = new DetailsProduitComplement($id);
 
         $detailsComplement->portionFrites = $this->portionFritesRepository->findBy(array('isEtat' => true));
 

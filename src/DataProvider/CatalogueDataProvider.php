@@ -25,7 +25,7 @@ final class CatalogueDataProvider implements ItemDataProviderInterface, Restrict
 
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?Catalogue
     {
-        $catalogue = new Catalogue();
+        $catalogue = new Catalogue($id);
 
         $catalogue->burgers = $this->burgerRepository->findBy(array('isEtat' => true));
         
