@@ -40,18 +40,14 @@ class CommandeDoublonsValidator
     }
 
     public static function checkDoublons($object,string $commandeTruck,string $truck) {
-        if (count($object->$commandeTruck()) != 0) {
-            foreach ($object->$commandeTruck() as $key => $value) {
-                dd($object->$commandeTruck());
-                $id = $value->$truck()->getId();
-                foreach ($object->$commandeTruck() as $key2 => $value2) {
-                    $id2 = $value2->$truck()->getId();
-                    if ($key2  != $key && $id == $id2) {
-                        return true;
-                    }
+        foreach ($object->$commandeTruck() as $key => $value) {
+            $id = $value->$truck()->getId();
+            foreach ($object->$commandeTruck() as $key2 => $value2) {
+                $id2 = $value2->$truck()->getId();
+                if ($key2  != $key && $id == $id2) {
+                    return true;
                 }
             }
         }
-        return false;
     }
 }
