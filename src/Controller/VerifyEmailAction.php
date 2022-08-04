@@ -11,10 +11,6 @@ class VerifyEmailAction extends AbstractController {
     
     public function __invoke(UserRepository $userRepository,String $token): Response
     {
-        /* $tokenParts = explode(".", $token);  
-        $tokenPayload = base64_decode($tokenParts[1]);
-        $jwtPayload = json_decode($tokenPayload); */
-
         $user = $userRepository->findOneBy(array('token' => $token));
         if ($user !=null && $user->getExpireAt() > new \DateTime()) {
             if ($user->isIsEtat() == false) {

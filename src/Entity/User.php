@@ -30,7 +30,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
         ],
         'verify_mail' => [
             'method' => 'PATCH',
-            'path' => '/users/{token}/activate',
+            'path' => '/users/activate/{token}',
             'controller' => VerifyEmailAction::class,
             'deserialize' =>false,
         ]
