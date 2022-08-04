@@ -60,7 +60,6 @@ class RegistrationsController extends AbstractController {
                         $user->setIsEtat(false);
                         $user->eraseCredentials();
                         $token = $user->getToken();
-                        dd($token);
                         $userRepository->add($user,true);
 
                         $mailer->sendMailConfirmation($user->getUserIdentifier(),$token);
