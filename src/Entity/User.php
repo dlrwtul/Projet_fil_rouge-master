@@ -117,7 +117,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->produits = new ArrayCollection();
         $this->roles = array("ROLE_GESTIONNAIRE");
         $this->isEtat = false;
-        $this->generateToken();
         $this->commandes = new ArrayCollection();
         $this->livraisons = new ArrayCollection();
     }
@@ -298,6 +297,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getToken(): ?string
     {
+        $this->generateToken();
         return $this->token;
     }
 
