@@ -42,6 +42,7 @@ class CommandeDoublonsValidator
     public static function checkDoublons($object,string $commandeTruck,string $truck) {
         if (count($object->$commandeTruck()) != 0) {
             foreach ($object->$commandeTruck() as $key => $value) {
+                dd($value->$truck());
                 $id = $value->$truck()->getId();
                 foreach ($object->$commandeTruck() as $key2 => $value2) {
                     $id2 = $value2->$truck()->getId();
