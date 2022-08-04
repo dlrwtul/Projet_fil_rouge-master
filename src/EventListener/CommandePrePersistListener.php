@@ -52,7 +52,7 @@ class CommandePrePersistListener implements EventSubscriberInterface
         $object->setNumero($object->generateNumero($count));
 
         $object->setMontant($this->calculMontantCommandeService->calculMontant($object));
-
+        dd($object);
         $object->setClient($this->tokenStorage->getToken()->getUser());
 
         // $check = $this->commandeRepository->findOneBy(array('id' => $object->getId()));
