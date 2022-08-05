@@ -89,7 +89,6 @@ class Commande
     
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
-    #[ApiSubresource]
     #[Groups(["commande:read","livraison:read"])]
     private $client;
 
@@ -139,6 +138,14 @@ class Commande
 
     #[ORM\OneToOne(mappedBy: 'commande', targetEntity: Ticket::class, cascade: ['persist', 'remove'])]
     private $ticket;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["commande:write"])]
+    private ?string $adresse = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["commande:write"])]
+    private ?string $telephone = null;
 
 
     public function __construct()
@@ -497,6 +504,30 @@ class Commande
         }
 
         $this->ticket = $ticket;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }
