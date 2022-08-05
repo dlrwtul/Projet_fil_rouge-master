@@ -76,6 +76,7 @@ class Commande
 
     #[ORM\ManyToOne(targetEntity: Zone::class, inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: true)]
+    #[ApiSubresource]
     #[Groups(["commande:read","commande:write","livraison:read"])]
     //#[Assert\NotNull(message:"Zone Obligatoire")]
     private $zone;
@@ -88,6 +89,7 @@ class Commande
     
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
+    #[ApiSubresource]
     #[Groups(["commande:read","livraison:read"])]
     private $client;
 
