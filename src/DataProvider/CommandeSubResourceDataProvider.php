@@ -7,6 +7,7 @@ use App\Repository\UserRepository;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use ApiPlatform\Core\DataProvider\SubresourceDataProviderInterface;
 use App\Repository\ClientRepository;
+use App\Repository\CommandeRepository;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class CommandeSubResourceDataProvider implements RestrictedDataProviderInterface, SubresourceDataProviderInterface
@@ -15,23 +16,26 @@ class CommandeSubResourceDataProvider implements RestrictedDataProviderInterface
     private $subresourceDataProvider;
     private $tokenStorage;
     private $clientRepo;
+    private $commandeRepo;
 
-    public function __construct(SubresourceDataProviderInterface $subresourceDataProvider,TokenStorageInterface $tokenStorage,ClientRepository $clientRepo)
+    public function __construct(SubresourceDataProviderInterface $subresourceDataProvider,TokenStorageInterface $tokenStorage,ClientRepository $clientRepo,CommandeRepository $commandeRepo)
     {
         $this->tokenStorage = $tokenStorage;
         $this->subresourceDataProvider = $subresourceDataProvider;
         $this->clientRepo = $clientRepo;
+        $this->commandeRepo = $commandeRepo;
+
     }
 
     public function getSubresource(string $resourceClass, array $identifiers, array $context, string $operationName = null)
     {
         $user = $this->tokenStorage->getToken()->getUser();
         $client = $this->clientRepo->findOneBy(["login" => $user->getUserIdentifier()]);
-        $identifiers["id"]["id"] = $client->getId();
+        $id = $client->getId();
 
         $this->alreadyInvoked = true;
-        dump($this->subresourceDataProvider->getSubresource($resourceClass, $identifiers, $context),$resourceClass,$identifiers,$context);
-        return $this->subresourceDataProvider->getSubresource($resourceClass, $identifiers, $context);
+
+        return $this->commandeRepo->findBy(array("client" => $client));
 
     }
 
