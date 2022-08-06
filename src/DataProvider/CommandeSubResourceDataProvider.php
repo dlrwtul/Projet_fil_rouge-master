@@ -25,9 +25,9 @@ class CommandeSubResourceDataProvider implements RestrictedDataProviderInterface
 
     public function getSubresource(string $resourceClass, array $identifiers, array $context, string $operationName = null)
     {
-        $user = $this->tokenStorage->getToken()->getUser();
+        /* $user = $this->tokenStorage->getToken()->getUser();
         $client = $this->clientRepo->findOneBy(["login" => $user->getUserIdentifier()]);
-        $identifiers["id"]["id"] = $client->getId();
+        $identifiers["id"]["id"] = $client->getId(); */
 
         $this->alreadyInvoked = true;
 
