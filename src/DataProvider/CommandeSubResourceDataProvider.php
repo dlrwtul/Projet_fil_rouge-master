@@ -33,9 +33,8 @@ class CommandeSubResourceDataProvider implements RestrictedDataProviderInterface
 
         $this->alreadyInvoked = true;
 
-        $collection = $this->subresourceDataProvider->getSubresource($resourceClass, $identifiers, $context);
-        dd($collection);
-        return $collection;
+        return $this->subresourceDataProvider->getSubresource($resourceClass, $identifiers, $context);
+        
     }
 
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
