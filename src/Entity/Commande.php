@@ -38,7 +38,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
         'delete' =>[ "security" => "is_granted('DELETE', object)"],
         'put' => [
             "path" => "commandes/{id}/{etat}",
-            "security" => "is_granted('DELETE', object)",
+            "security" => "is_granted('EDIT', object)",
             "deserialize" => false
         ]
     ]

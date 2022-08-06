@@ -15,6 +15,7 @@ class CommandeVoter extends Voter
     public const CREATE = 'CREATE';
     public const READ = 'READ';
     public const ALL = 'ALL';
+    public const EDIT = 'EDIT';
     private $security = null;
 
     public function __construct(Security $security)
@@ -29,7 +30,7 @@ class CommandeVoter extends Voter
 
         }
         
-        return in_array($attribute, [self::CREATE, self::READ,self::DELETE,self::ALL])
+        return in_array($attribute, [self::CREATE, self::READ,self::DELETE,self::ALL,self::EDIT])
             && $subject instanceof Commande;
     }
 
@@ -48,6 +49,9 @@ class CommandeVoter extends Voter
                 if ( $this->security->isGranted(RoleService::CLIENT) ) { return true; } 
                 break;
             case self::READ || self::ALL:
+                if ( $this->security->isGranted(RoleService::VISITER) ) { return true; } 
+                break;
+            case self::EDIT:
                 if ( $this->security->isGranted(RoleService::VISITER) ) { return true; } 
                 break;
         }
