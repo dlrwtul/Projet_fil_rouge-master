@@ -10,7 +10,7 @@ use App\Repository\ClientRepository;
 use App\Repository\CommandeRepository;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class CommandeSubResourceDataProvider implements RestrictedDataProviderInterface, SubresourceDataProviderInterface
+class CommandeSubResourceDataProvider implements SubresourceDataProviderInterface
 {
     private $alreadyInvoked = false;
     private $subresourceDataProvider;
@@ -31,8 +31,7 @@ class CommandeSubResourceDataProvider implements RestrictedDataProviderInterface
     {
         $user = $this->tokenStorage->getToken()->getUser();
         $client = $this->clientRepo->findOneBy(["login" => $user->getUserIdentifier()]);
-        $id = $client->getId();
-
+        dump($context);
         $this->alreadyInvoked = true;
 
         return $this->commandeRepo->findBy(array("client" => $client));
