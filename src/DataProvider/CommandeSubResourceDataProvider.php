@@ -29,12 +29,12 @@ class CommandeSubResourceDataProvider implements RestrictedDataProviderInterface
         $client = $this->clientRepo->findOneBy(["login" => $user->getUserIdentifier()]);
         $identifiers["id"]["id"] = $client->getId();
 
-        dd($identifiers,$client,$user);
+        //dd($identifiers,$client,$user);
 
         $this->alreadyInvoked = true;
 
         $collection = $this->subresourceDataProvider->getSubresource($resourceClass, $identifiers, $context);
-
+        dd($collection);
         return $collection;
     }
 
