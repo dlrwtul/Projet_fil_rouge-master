@@ -31,10 +31,10 @@ class CommandeSubResourceDataProvider implements SubresourceDataProviderInterfac
     {
         $user = $this->tokenStorage->getToken()->getUser();
         $client = $this->clientRepo->findOneBy(["login" => $user->getUserIdentifier()]);
-        dump($context);
+        $context["filters"]["client"] = $client;
         $this->alreadyInvoked = true;
 
-        return $this->commandeRepo->findBy(array("client" => $client));
+        return $this->commandeRepo->findBy($context["filters"]);
 
     }
 
