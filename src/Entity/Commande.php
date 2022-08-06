@@ -90,6 +90,7 @@ class Commande
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(["commande:read","livraison:read"])]
+    #[ApiSubresource]
     private $client;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commandes')]
