@@ -34,7 +34,7 @@ class CommandeSubResourceDataProvider implements SubresourceDataProviderInterfac
         $context["filters"]["client"] = $client;
         $this->alreadyInvoked = true;
 
-        return $this->commandeRepo->findBy($context["filters"],array('id' => 'ASC'));
+        return $this->commandeRepo->findBy($context["filters"],array('id' => 'DESC'));
 
     }
 
