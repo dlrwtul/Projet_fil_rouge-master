@@ -26,7 +26,7 @@ final class MultipartDecoder implements DecoderInterface
             $request->request->set('prix',floatval($request->request->get('prix')));
         }
         
-        //dd($request);
+        dd($request);
         //$source = imagecreatefrompng($image_path);
         //dd($this->tis->createPreview($request->files->all()["file"]->getRealPath()));
         //dd($request->request->all());
