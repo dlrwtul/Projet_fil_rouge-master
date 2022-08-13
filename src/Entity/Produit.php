@@ -19,10 +19,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\DiscriminatorColumn(name: "class_type", type: "string")]
 #[ORM\DiscriminatorMap(["burger" => "Burger", "boisson" => "Boisson", "portion_frites" => "PortionFrites","menu" => "Menu"])]
 #[ApiResource(
-    itemOperations:[],
+    itemOperations:[
+        'delete' => [
+            "security" => "is_granted('ROLE_GESTIONNAIRE')",
+        ]
+    ],
     collectionOperations:[
         'get' => [
-            'normalization_context' => ['groups' => ['product:read']]
+            'normalization_context' => ['groups' => ['product:read']],
+            "security" => "is_granted('ROLE_GESTIONNAIRE')",
         ]
     ]
 )]
