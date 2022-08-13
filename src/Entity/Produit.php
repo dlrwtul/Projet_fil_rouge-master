@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProduitRepository;
@@ -17,7 +18,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\InheritanceType("JOINED")]
 #[ORM\DiscriminatorColumn(name: "class_type", type: "string")]
 #[ORM\DiscriminatorMap(["burger" => "Burger", "boisson" => "Boisson", "portion_frites" => "PortionFrites","menu" => "Menu"])]
-
+#[ApiResource(
+    itemOperations:[],
+    collectionOperations:[
+        'get' => [
+            'normalization_context' => ['groups' => ['product:read']]
+        ]
+    ]
+)]
 class Produit
 {
     #[ORM\Id]
