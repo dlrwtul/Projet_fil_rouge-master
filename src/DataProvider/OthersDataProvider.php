@@ -6,6 +6,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\CollectionDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
+use App\Entity\Produit;
 use App\Entity\Quartier;
 use App\Entity\Taille;
 use App\Entity\Zone;
@@ -21,7 +22,7 @@ final class OthersDataProvider implements ItemDataProviderInterface, RestrictedD
 
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
     {
-        return Zone::class === $resourceClass || Quartier::class === $resourceClass || Taille::class === $resourceClass;
+        return Zone::class === $resourceClass || Quartier::class === $resourceClass || Taille::class === $resourceClass || Produit::class === $resourceClass;
     }
 
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): Zone|Quartier|Taille|null
