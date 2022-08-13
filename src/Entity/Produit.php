@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     collectionOperations:[
         'get' => [
-            'normalization_context' => ['groups' => ['product:read']],
+            'normalization_context' => ['groups' => ['product:read',"product:isEtat"]],
             "security" => "is_granted('ROLE_GESTIONNAIRE')",
         ]
     ]
@@ -68,6 +68,7 @@ class Produit
     protected ?File $file = null;
 
     #[ORM\Column(type: 'boolean')]
+    #[Groups(["product:isEtat"])]
     protected $isEtat=true ;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'produits')]
