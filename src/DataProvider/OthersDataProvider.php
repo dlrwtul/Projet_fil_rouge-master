@@ -14,7 +14,7 @@ use App\Entity\Taille;
 use App\Entity\Zone;
 use Symfony\Component\Console\Helper\Table;
 
-final class OthersDataProvider implements ItemDataProviderInterface, RestrictedDataProviderInterface ,CollectionDataProviderInterface
+final class OthersDataProvider implements  RestrictedDataProviderInterface ,CollectionDataProviderInterface
 {
     private $managerRegistery;
 
