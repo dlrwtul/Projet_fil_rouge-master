@@ -47,7 +47,7 @@ class CommandeDataSubscriber implements EventSubscriberInterface
                 }
                 break;
             case EtatService::ETAT_EN_COURS_DE_LIVRAISON:
-                if ($previousEtat != EtatService::ETAT_TERMINE || $commande->isIsALivrer() != 1) {
+                if ($previousEtat != EtatService::ETAT_EN_COURS || $commande->isIsALivrer() != 1) {
                     $error = true;
                 }
                 break;
