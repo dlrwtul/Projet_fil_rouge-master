@@ -42,6 +42,7 @@ security:
         - { path: ^/api/detailsProduitComplements, roles: PUBLIC_ACCESS }
         - { path: ^/api/menus, roles: PUBLIC_ACCESS }
         - { path: ^/api/burgers, roles: PUBLIC_ACCESS }
+        - { path: ^/api/quartiers, roles: PUBLIC_ACCESS }
         - { path: ^/api$, roles: PUBLIC_ACCESS }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
