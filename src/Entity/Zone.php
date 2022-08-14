@@ -38,18 +38,18 @@ class Zone
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["zone:read","commande:write","commande:read"])]
+    #[Groups(["quartier:read","zone:read","commande:write","commande:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255,unique: true)]
     #[Assert\NotBlank(message:"nom de zone obligatoire")]
-    #[Groups(["zone:read","zone:write","commande:read"])]
+    #[Groups(["quartier:read","zone:read","zone:write","commande:read"])]
     private $libelle;
 
     #[ORM\Column(type: 'float')]
     #[Assert\NotBlank(message:"nom de zone obligatoire")]
     #[Assert\NotNull(message:"Enter Valid Price")]
-    #[Groups(["zone:read","zone:write","commande:read"])]
+    #[Groups(["quartier:read","zone:read","zone:write","commande:read"])]
     private $montantLivraison;
 
     #[ORM\Column(type: 'boolean')]

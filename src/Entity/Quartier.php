@@ -13,17 +13,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: QuartierRepository::class)]
 #[ApiResource(
-    attributes: ["security" => "is_granted('ROLE_GESTIONNAIRE')"],
     denormalizationContext: ['groups' => ['quartier:write']],
     normalizationContext: ['groups' => ['quartier:read']],
     collectionOperations: [
-        'post',
+        'post' => ["security" => "is_granted('ROLE_GESTIONNAIRE')",],
         'get',
     ],
     itemOperations: [
-        'get',
-        'put',
-        'delete'
+        'get' => ["security" => "is_granted('ROLE_GESTIONNAIRE')",],
+        'put' => ["security" => "is_granted('ROLE_GESTIONNAIRE')",],
+        'delete' => ["security" => "is_granted('ROLE_GESTIONNAIRE')",]
     ]
 )]
 class Quartier
@@ -31,7 +30,7 @@ class Quartier
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["quartier:read","quartier:read","zone:read","commande:write","commande:read"])]
+    #[Groups(["quartier:read","zone:read","commande:write","commande:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255,unique: true)]
@@ -43,6 +42,7 @@ class Quartier
     private $isEtat ;
 
     #[ORM\ManyToOne(targetEntity: Zone::class, inversedBy: 'quartiers')]
+    #[Groups(["quartier:read","commande:read"])]
     private $zone;
 
     #[ORM\OneToMany(mappedBy: 'quartier', targetEntity: Commande::class)]
