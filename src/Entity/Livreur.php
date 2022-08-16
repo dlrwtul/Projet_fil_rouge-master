@@ -47,6 +47,7 @@ class Livreur extends User
     private $livraisons;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["livreur:read"])]
     private $etat = EtatService::ETAT_DISPONIBLE;
 
     public function __construct() {

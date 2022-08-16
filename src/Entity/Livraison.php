@@ -58,6 +58,7 @@ class Livraison
     private $user;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["livraison:read"])]
     private $etat = EtatService::ETAT_EN_COURS;
 
     public function __construct()
@@ -147,6 +148,11 @@ class Livraison
         $this->etat = $etat;
         if ($etat == EtatService::ETAT_VALIDE) {
             $this->getLivreur()->setEtat(EtatService::ETAT_DISPONIBLE);
+            foreach ($this->commandes as $value) {
+                if ($value->getEtat() == EtatService::ETAT_EN_COURS_DE_LIVRAISON) {
+                    $value->setEtat(EtatService::ETAT_VALIDE);
+                }
+            }
         }
 
         return $this;
