@@ -3,18 +3,14 @@
 namespace App\DataProvider;
 
 use Doctrine\Persistence\ManagerRegistry;
-use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\CollectionDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use App\Entity\Burger;
-use App\Entity\Livraison;
 use App\Entity\Livreur;
 use App\Entity\PortionFrites;
-use App\Entity\Produit;
 use App\Entity\Quartier;
 use App\Entity\Taille;
 use App\Entity\Zone;
-use Symfony\Component\Console\Helper\Table;
 
 final class OthersDataProvider implements  RestrictedDataProviderInterface ,CollectionDataProviderInterface
 {
