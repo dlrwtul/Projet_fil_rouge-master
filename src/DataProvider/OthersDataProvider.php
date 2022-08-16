@@ -7,6 +7,8 @@ use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\CollectionDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use App\Entity\Burger;
+use App\Entity\Livraison;
+use App\Entity\Livreur;
 use App\Entity\PortionFrites;
 use App\Entity\Produit;
 use App\Entity\Quartier;
@@ -24,7 +26,7 @@ final class OthersDataProvider implements  RestrictedDataProviderInterface ,Coll
 
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
     {
-        return Zone::class === $resourceClass || Quartier::class === $resourceClass || Taille::class === $resourceClass || Burger::class === $resourceClass || PortionFrites::class == $resourceClass;
+        return Zone::class === $resourceClass || Quartier::class === $resourceClass || Taille::class === $resourceClass || Burger::class === $resourceClass || PortionFrites::class == $resourceClass || Livreur::class == $resourceClass;
     }
 
     // public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): Zone|Quartier|Taille|null
