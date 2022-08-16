@@ -29,7 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         'zone-commandes' => [
             'method' => 'GET',
             'path' => '/zones/commandes',
-            'normalization_context' => ['groups' => ['zone:commande:read','commande:read']],
+            'normalization_context' => ['groups' => ['zone:commande:read','commande:read',"commande:update"]],
         ]
     ],
     itemOperations: [
