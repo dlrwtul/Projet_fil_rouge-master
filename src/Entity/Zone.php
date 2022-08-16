@@ -23,7 +23,14 @@ use Symfony\Component\Validator\Constraints as Assert;
             'controller' => ZoneController::class,
             'deserialize' =>false
         ],
-        'get' => ["security" => "is_granted('ROLE_VISITER')"],
+        'get' => [
+            "security" => "is_granted('ROLE_VISITER')"
+        ],
+        'zone-commandes' => [
+            'method' => 'GET',
+            'path' => '/zones/commandes',
+            'normalization_context' => ['groups' => ['zone:commande:read','commande:read']],
+        ]
     ],
     itemOperations: [
         'get',
@@ -38,18 +45,18 @@ class Zone
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["quartier:read","zone:read","commande:write","commande:read"])]
+    #[Groups(["quartier:read","zone:read","commande:write","commande:read",'zone:commande:read'])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255,unique: true)]
     #[Assert\NotBlank(message:"nom de zone obligatoire")]
-    #[Groups(["quartier:read","zone:read","zone:write","commande:read"])]
+    #[Groups(["quartier:read","zone:read","zone:write","commande:read",'zone:commande:read'])]
     private $libelle;
 
     #[ORM\Column(type: 'float')]
     #[Assert\NotBlank(message:"nom de zone obligatoire")]
     #[Assert\NotNull(message:"Enter Valid Price")]
-    #[Groups(["quartier:read","zone:read","zone:write","commande:read"])]
+    #[Groups(["quartier:read","zone:read","zone:write","commande:read",'zone:commande:read'])]
     private $montantLivraison;
 
     #[ORM\Column(type: 'boolean')]
@@ -61,6 +68,7 @@ class Zone
     private $quartiers;
 
     #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Commande::class)]
+    #[Groups(['zone:commande:read'])]
     private $commandes;
 
 
