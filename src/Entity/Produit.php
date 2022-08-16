@@ -32,7 +32,6 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
         ]
     ]
 )]
-#[ApiFilter(SearchFilter::class, properties: ['isEtat' => 'exact'])]
 
 class Produit
 {
