@@ -91,7 +91,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $produits;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Groups("user:telephone","commande:read","livraison:read")]
+    #[Groups("user:telephone","commande:read","livraison:read","livreur:read")]
     private $telephone;
 
     #[Assert\NotBlank(message:"password is required")]
