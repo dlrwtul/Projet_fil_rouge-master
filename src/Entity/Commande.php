@@ -141,11 +141,11 @@ class Commande
     private $ticket;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(["commande:write"])]
+    #[Groups(["commande:write","commande:read","ticket:read","livraison:read"])]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(["commande:write"])]
+    #[Groups(["commande:write","commande:read","ticket:read","livraison:read"])]
     private ?string $telephone = null;
 
 
