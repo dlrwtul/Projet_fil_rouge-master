@@ -25,6 +25,7 @@ class CommandeMenuTaillesValidator
                 
                 $tailleId = $menuTaille->getTaille()->getId();
                 $quantite = $menuTaille->getQuantite()*$gQuantite;
+                dd($quantite);
                 foreach ($menu->getCommandeMenuBoissonTailles() as $key => $commandeMenuBoissonTaille) {
                     $tailles[] = $commandeMenuBoissonTaille->getBoissonTaille()->getTaille()->getId();
                     if ($commandeMenuBoissonTaille->getBoissonTaille()->getTaille()->getId() == $tailleId) {
