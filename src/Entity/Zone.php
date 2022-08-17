@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Controller\ZoneController;
 use App\Repository\ZoneRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
@@ -12,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints\Unique;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 #[ORM\Entity(repositoryClass: ZoneRepository::class)]
 #[ApiResource(
@@ -40,6 +42,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         'delete'
     ]
 )]
+#[ApiFilter(SearchFilter::class, properties: ['commandes.createdAt' => 'exact'])]
 class Zone
 {
     #[ORM\Id]
