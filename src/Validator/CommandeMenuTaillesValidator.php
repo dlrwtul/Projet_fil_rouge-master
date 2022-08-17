@@ -36,7 +36,9 @@ class CommandeMenuTaillesValidator
                             $boissonTailles[] = $commandeMenuBoissonTaille->getBoissonTaille();
                             $quantite -= $commandeMenuBoissonTaille->getQuantite();
                         }
+
                         if ($quantite != 0 && $key >= count($menu->getCommandeMenuBoissonTailles()) - 1) {
+                            dd($quantite,$key,$menuTaille->getQuantite()*$gQuantite);
                             $errors[] = "la quantite de boisson prise de la taille de boisson ".$tailleId." du menu ".$menu->getNom()." est erroné";
                         }
                     }
