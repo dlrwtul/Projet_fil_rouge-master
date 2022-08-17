@@ -2,11 +2,21 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TicketRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TicketRepository::class)]
+#[ApiResource(
+    normalizationContext:['groups' => ["ticket:read"]],
+    itemOperations:[
+        'get'
+    ],
+    collectionOperations:[
+        'get'
+    ]
+)]
 class Ticket
 {
     #[ORM\Id]
