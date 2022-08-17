@@ -9,11 +9,11 @@ use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints\Unique;
 use Symfony\Component\Validator\Constraints as Assert;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 #[ORM\Entity(repositoryClass: ZoneRepository::class)]
 #[ApiResource(
@@ -42,7 +42,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
         'delete'
     ]
 )]
-#[ApiFilter(SearchFilter::class, properties: ['commandes.createdAt' => 'exact'])]
+#[ApiFilter(DateFilter::class, properties: ['commandes.createdAt'])]
 class Zone
 {
     #[ORM\Id]
