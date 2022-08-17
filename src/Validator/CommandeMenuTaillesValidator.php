@@ -39,11 +39,10 @@ class CommandeMenuTaillesValidator
                             dump($quantite);
                         }
 
-                        if ($quantite != 0 && $key >= (count($menu->getCommandeMenuBoissonTailles()) - 1)) {
-                            dump('baxoul');
-                            $errors[] = "la quantite de boisson prise de la taille de boisson ".$tailleId." du menu ".$menu->getNom()." est erroné";
-                        }
                     }
+                }
+                if ($quantite != 0) {
+                    $errors[] = "la quantite de boisson prise de la taille de boisson ".$tailleId." du menu ".$menu->getNom()." est erroné";
                 }
                 dd($quantite);
             }
