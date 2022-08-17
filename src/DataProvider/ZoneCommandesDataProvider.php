@@ -12,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\RequestStack;
 use ApiPlatform\Core\DataProvider\CollectionDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
+use App\Entity\Commande;
 
 final class ZoneCommandesDataProvider implements  RestrictedDataProviderInterface ,CollectionDataProviderInterface
 {
@@ -31,7 +32,14 @@ final class ZoneCommandesDataProvider implements  RestrictedDataProviderInterfac
         $manager = $this->managerRegistery->getManagerForClass($resourceClass);
         $repository = $manager->getRepository($resourceClass);
         $request = $this->requestStack->getCurrentRequest();
-        dd(array("etat" => $request->attributes->get("_route_params")["etat"],"date" => $request->attributes->get("_route_params")["date"]));
+        $array = [];
+        if ($request->attributes->get("_route_params")["etat"]) {
+            $commande = new Commande();
+            $commande->setEtat($request->attributes->get("_route_params")["etat"]);
+            $array["commandes"] = $commande;
+        }
+        $array["isEtat"] = true;
+        dd($repository->findBy($array));
         return $repository->findBy(array('isEtat' => true));
 
     }
