@@ -33,7 +33,7 @@ class CommandeMenuTaillesValidator
                         if ($commandeMenuBoissonTaille->getQuantite() > $commandeMenuBoissonTaille->getBoissonTaille()->getQuantiteStock()) {
                             $errors[] = "la quantite de stock du boisson ".$commandeMenuBoissonTaille->getBoissonTaille()->getBoisson()->getNom()." du menu ".$menu->getNom()." est insufisante  ";
                         } else {
-                            dump($commandeMenuBoissonTaille->getQuantite());
+                            dump($commandeMenuBoissonTaille);
                             $commandeMenuBoissonTaille->getBoissonTaille()->setQuantiteStock($commandeMenuBoissonTaille->getBoissonTaille()->getQuantiteStock() - $commandeMenuBoissonTaille->getQuantite());
                             $boissonTailles[] = $commandeMenuBoissonTaille->getBoissonTaille();
                             $quantite -= $commandeMenuBoissonTaille->getQuantite();
@@ -41,6 +41,7 @@ class CommandeMenuTaillesValidator
                         }
 
                         if ($quantite != 0 && $key >= (count($menu->getCommandeMenuBoissonTailles()) - 1)) {
+                            dump('baxoul');
                             $errors[] = "la quantite de boisson prise de la taille de boisson ".$tailleId." du menu ".$menu->getNom()." est erroné";
                         }
                     }
