@@ -22,7 +22,7 @@ final class OthersDataProvider implements  RestrictedDataProviderInterface ,Coll
 
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
     {
-        return Quartier::class === $resourceClass || Taille::class === $resourceClass || Burger::class === $resourceClass || PortionFrites::class == $resourceClass || Livreur::class == $resourceClass;
+        return Zone::class === $resourceClass || Quartier::class === $resourceClass || Taille::class === $resourceClass || Burger::class === $resourceClass || PortionFrites::class == $resourceClass || Livreur::class == $resourceClass;
     }
 
     // public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): Zone|Quartier|Taille|null
