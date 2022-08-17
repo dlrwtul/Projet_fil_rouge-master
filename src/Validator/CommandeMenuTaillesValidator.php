@@ -25,7 +25,7 @@ class CommandeMenuTaillesValidator
                 
                 $tailleId = $menuTaille->getTaille()->getId();
                 $quantite = $menuTaille->getQuantite()*$gQuantite;
-                dd($quantite);
+
                 foreach ($menu->getCommandeMenuBoissonTailles() as $key => $commandeMenuBoissonTaille) {
                     $tailles[] = $commandeMenuBoissonTaille->getBoissonTaille()->getTaille()->getId();
                     if ($commandeMenuBoissonTaille->getBoissonTaille()->getTaille()->getId() == $tailleId) {
@@ -33,9 +33,11 @@ class CommandeMenuTaillesValidator
                         if ($commandeMenuBoissonTaille->getQuantite() > $commandeMenuBoissonTaille->getBoissonTaille()->getQuantiteStock()) {
                             $errors[] = "la quantite de stock du boisson ".$commandeMenuBoissonTaille->getBoissonTaille()->getBoisson()->getNom()." du menu ".$menu->getNom()." est insufisante  ";
                         } else {
+                            dump($commandeMenuBoissonTaille->getQuantite());
                             $commandeMenuBoissonTaille->getBoissonTaille()->setQuantiteStock($commandeMenuBoissonTaille->getBoissonTaille()->getQuantiteStock() - $commandeMenuBoissonTaille->getQuantite());
                             $boissonTailles[] = $commandeMenuBoissonTaille->getBoissonTaille();
                             $quantite -= $commandeMenuBoissonTaille->getQuantite();
+                            dump($quantite);
                         }
 
                         if ($quantite != 0 && $key >= (count($menu->getCommandeMenuBoissonTailles()) - 1)) {
