@@ -31,7 +31,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
         ],
         'zone-commandes' => [
             'method' => 'GET',
-            'path' => '/zones/commandes/{etat}/{date}',
+            'path' => '/zones/commandes',
             'normalization_context' => ['groups' => ['zone:commande:read','commande:read',"commande:update"]],
         ]
     ],
@@ -43,6 +43,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
         'delete'
     ]
 )]
+#[ApiFilter(SearchFilter::class, properties: ['commandes.etat' => 'exact'])]
+#[ApiFilter(DateFilter::class, properties: ['commandes.createdAt'])]
 class Zone
 {
     #[ORM\Id]
@@ -73,6 +75,7 @@ class Zone
     #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Commande::class)]
     #[Groups(['zone:commande:read'])]
     private $commandes;
+
 
     public function __construct()
     {
