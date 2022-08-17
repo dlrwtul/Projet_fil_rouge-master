@@ -15,7 +15,7 @@ class CommandeMenuTaillesValidator
         $boissonTailles = [];
         $errors = [];
         $quantite = 0;
-
+        dd($object->getCommandeMenus());
         foreach ($object->getCommandeMenus() as $commandeMenu) {
 
             $menu = $commandeMenu->getMenu();
