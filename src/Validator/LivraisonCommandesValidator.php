@@ -9,10 +9,9 @@ class LivraisonCommandesValidator
 {
     public static function validate($object, ExecutionContextInterface $context, $payload)
     {
-        dd($object);
         $errors = [];
         foreach ($object->getCommandes() as $commande) {
-            if ($commande->getEtat() != EtatService::ETAT_EN_COURS) {
+            if ($commande->getEtat() != EtatService::ETAT_EN_COURS_DE_LIVRAISON) {
                 $errors[] = "la commande n° : ".$commande->getNumero()." est non livrable ";
             }
         }
