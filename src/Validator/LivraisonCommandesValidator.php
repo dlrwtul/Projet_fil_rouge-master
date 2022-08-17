@@ -11,7 +11,7 @@ class LivraisonCommandesValidator
     {
         $errors = [];
         foreach ($object->getCommandes() as $key => $commande) {
-            if ($commande->getEtat() != EtatService::ETAT_TERMINE) {
+            if ($commande->getEtat() != EtatService::ETAT_EN_COURS) {
                 $errors[] = "la commande n° : ".$commande->getNumero()." est non livrable ";
             }
         }
