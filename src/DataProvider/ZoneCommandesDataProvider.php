@@ -31,7 +31,7 @@ final class ZoneCommandesDataProvider implements  RestrictedDataProviderInterfac
         $manager = $this->managerRegistery->getManagerForClass($resourceClass);
         $repository = $manager->getRepository($resourceClass);
         $request = $this->requestStack->getCurrentRequest();
-        dd($request->attributes->get("_route_params"));
+        dd(array("etat" => $request->attributes->get("_route_params")["etat"],"date" => $request->attributes->get("_route_params")["date"]));
         return $repository->findBy(array('isEtat' => true));
 
     }
