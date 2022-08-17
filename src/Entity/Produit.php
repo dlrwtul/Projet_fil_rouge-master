@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProduitRepository;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
@@ -32,7 +33,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
         ]
     ]
 )]
-
+#[ApiFilter(PropertyFilter::class, properties: ['isEtat'])]
 class Produit
 {
     #[ORM\Id]
