@@ -15,13 +15,11 @@ class CommandeMenuTaillesValidator
         $boissonTailles = [];
         $errors = [];
         $quantite = 0;
-        dd($object->getCommandeMenus());
         foreach ($object->getCommandeMenus() as $commandeMenu) {
 
             $menu = $commandeMenu->getMenu();
             $gQuantite = $commandeMenu->getQuantite();
             $tailles= [];
-            dd($menu->getCommandeMenuBoissonTailles());
             foreach ($menu->getMenuTailles() as $menuTaille) {
                 
                 $tailleId = $menuTaille->getTaille()->getId();
@@ -36,7 +34,9 @@ class CommandeMenuTaillesValidator
                         } else {
                             $commandeMenuBoissonTaille->getBoissonTaille()->setQuantiteStock($commandeMenuBoissonTaille->getBoissonTaille()->getQuantiteStock() - $commandeMenuBoissonTaille->getQuantite());
                             $boissonTailles[] = $commandeMenuBoissonTaille->getBoissonTaille();
+                            dump($quantite,$commandeMenuBoissonTaille->getQuantite());
                             $quantite -= $commandeMenuBoissonTaille->getQuantite();
+                            dump($quantite);
                         }
 
                         if ($quantite != 0 && $key >= (count($menu->getCommandeMenuBoissonTailles()) - 1)) {
