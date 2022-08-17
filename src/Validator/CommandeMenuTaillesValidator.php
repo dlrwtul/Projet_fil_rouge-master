@@ -34,9 +34,7 @@ class CommandeMenuTaillesValidator
                         } else {
                             $commandeMenuBoissonTaille->getBoissonTaille()->setQuantiteStock($commandeMenuBoissonTaille->getBoissonTaille()->getQuantiteStock() - $commandeMenuBoissonTaille->getQuantite());
                             $boissonTailles[] = $commandeMenuBoissonTaille->getBoissonTaille();
-                            dump($quantite,$commandeMenuBoissonTaille->getQuantite());
                             $quantite -= $commandeMenuBoissonTaille->getQuantite();
-                            dump($quantite);
                         }
 
                     }
@@ -44,7 +42,6 @@ class CommandeMenuTaillesValidator
                 if ($quantite != 0) {
                     $errors[] = "la quantite de boisson prise de la taille de boisson ".$tailleId." du menu ".$menu->getNom()." est erroné";
                 }
-                dd($quantite);
             }
             if (count(array_unique($tailles)) != count($menu->getMenuTailles())) {
                 $errors[] = "Veuillez choisir des boissons pour toute les tailles du menu ".$menu->getNom();
