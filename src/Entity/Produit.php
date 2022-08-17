@@ -33,7 +33,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
         ]
     ]
 )]
-#[ApiFilter(PropertyFilter::class, properties: ['isEtat'])]
+#[ApiFilter(SearchFilter::class, properties: ['isEtat' => 'exact'])]
 class Produit
 {
     #[ORM\Id]
