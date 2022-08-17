@@ -138,6 +138,7 @@ class Commande
     private $commandeProduits;
 
     #[ORM\OneToOne(mappedBy: 'commande', targetEntity: Ticket::class, cascade: ['persist', 'remove'])]
+    #[Groups(["commande:read"])]
     private $ticket;
 
     #[ORM\Column(length: 255, nullable: true)]

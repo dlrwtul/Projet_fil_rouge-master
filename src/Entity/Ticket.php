@@ -12,24 +12,24 @@ class Ticket
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(["ticket:read","commande:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(["ticket:read"])]
+    #[Groups(["ticket:read","commande:read"])]
     private $reference;
 
     #[ORM\Column(type: 'datetime')]
-    #[Groups(["ticket:read"])]
+    #[Groups(["ticket:read","commande:read"])]
     private $createdAt;
 
-    private $date;
 
     #[ORM\OneToOne(inversedBy: 'ticket', targetEntity: Commande::class, cascade: ['persist', 'remove'])]
     #[Groups(["ticket:read"])]
     private $commande;
 
     #[ORM\Column(type: 'blob')]
-    #[Groups(["ticket:read"])]
+    #[Groups(["ticket:read","commande:read"])]
     private $pdfFile;
 
     public function __construct() {
