@@ -74,6 +74,9 @@ class Livreur extends User
      */
     public function getLivraisons(): Collection
     {
+        if ($this->livraisons == null) {
+            return [];
+        }
         return $this->livraisons;
     }
 
