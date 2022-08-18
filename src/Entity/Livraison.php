@@ -96,7 +96,6 @@ class Livraison
     {
         $this->livreur = $livreur;
         $livreur->setEtat(EtatService::ETAT_INDISPONIBLE);
-        $livreur->addLivraison($this);
         return $this;
     }
 
