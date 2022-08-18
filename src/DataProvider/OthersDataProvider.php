@@ -2,15 +2,16 @@
 
 namespace App\DataProvider;
 
+use App\Entity\Zone;
+use App\Entity\Burger;
+use App\Entity\Taille;
+use App\Entity\Livreur;
+use App\Entity\Quartier;
+use App\Service\EtatService;
+use App\Entity\PortionFrites;
 use Doctrine\Persistence\ManagerRegistry;
 use ApiPlatform\Core\DataProvider\CollectionDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
-use App\Entity\Burger;
-use App\Entity\Livreur;
-use App\Entity\PortionFrites;
-use App\Entity\Quartier;
-use App\Entity\Taille;
-use App\Entity\Zone;
 
 final class OthersDataProvider implements  RestrictedDataProviderInterface ,CollectionDataProviderInterface
 {
@@ -34,12 +35,20 @@ final class OthersDataProvider implements  RestrictedDataProviderInterface ,Coll
     // }
 
     public function getCollection(string $resourceClass, string $operationName = null): ?array {
-        if ($resourceClass == Zone::class) {
-            dd($operationName);
-        }
+
         $manager = $this->managerRegistery->getManagerForClass($resourceClass);
         $repository = $manager->getRepository($resourceClass);
-        return $repository->findBy(array('isEtat' => true));
-
+        $array = $repository->findBy(array('isEtat' => true));
+        if ($operationName == 'zone-commandes') {
+            return array_map(static function (Zone $element) {
+                foreach ($element->getCommandes() as  $value) {
+                    if ($value->getEtat() != EtatService::ETAT_EN_COURS) {
+                        $element->getCommandes()->removeElement($value);
+                    }
+                }
+                return $element;
+            }, $array);
+        }
+        return $array;
     }
 }
