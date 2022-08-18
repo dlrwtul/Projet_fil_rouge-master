@@ -94,8 +94,8 @@ class Livraison
 
     public function setLivreur(?Livreur $livreur): self
     {
-        $this->livreur = $livreur;
         $livreur->setEtat(EtatService::ETAT_INDISPONIBLE);
+        $this->livreur = $livreur;
         return $this;
     }
 
