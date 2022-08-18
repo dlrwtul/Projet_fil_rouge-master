@@ -46,7 +46,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 )]
 
 #[ApiFilter(OrderFilter::class, properties: ['id', 'createdAt'], arguments: ['orderParameterName' => 'order'])]
-#[ApiFilter(SearchFilter::class, properties: ['zone.libelle' => 'partial','etat' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['zone.libelle' => 'partial','etat' => 'exact',"commande" => 'partial'])]
 #[ApiFilter(DateFilter::class, properties: ['createdAt'])]
 #[Assert\Callback([CommandeMenusBurgersValidator::class, 'validate'])]
 #[Assert\Callback([CommandeDoublonsValidator::class, 'validate'])]
