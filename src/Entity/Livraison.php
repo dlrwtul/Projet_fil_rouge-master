@@ -14,6 +14,7 @@ use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 #[ORM\Entity(repositoryClass: LivraisonRepository::class)]
 #[ApiResource(
@@ -34,6 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         ],
     ]
 )]
+#[ApiFilter(SearchFilter::class, properties: ['etat' => 'exact'])]
 #[Assert\Callback([LivraisonCommandesValidator::class, 'validate'])]
 class Livraison
 {
