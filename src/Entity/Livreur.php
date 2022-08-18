@@ -75,7 +75,7 @@ class Livreur extends User
     public function getLivraisons(): Collection
     {
         if ($this->livraisons == null) {
-            return [];
+            return new ArrayCollection();
         }
         return $this->livraisons;
     }
