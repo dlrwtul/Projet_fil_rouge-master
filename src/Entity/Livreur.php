@@ -36,12 +36,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Livreur extends User
 {
-    #[Groups("livraison:write")]
+    #[Groups("livraison:write",'livraison:read')]
     protected $id;
     
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank(message:"matricule moto is required")]
-    #[Groups(["livreur:write","livreur:read"])]
+    #[Groups(["livreur:write","livreur:read",'livraison:read'])]
     private $matriculeMoto;
 
     #[ORM\OneToMany(mappedBy: 'livreur', targetEntity: Livraison::class)]

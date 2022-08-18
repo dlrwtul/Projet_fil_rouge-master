@@ -19,7 +19,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 #[ORM\Entity(repositoryClass: LivraisonRepository::class)]
 #[ApiResource(
     denormalizationContext: ['groups' => ['livraison:write']],
-    normalizationContext: ['groups' => ['livraison:read','livreur:read']],
+    normalizationContext: ['groups' => ['livraison:read']],
     collectionOperations: [
         'post' => [
             "security_post_denormalize" => "is_granted('ALL', object)"
