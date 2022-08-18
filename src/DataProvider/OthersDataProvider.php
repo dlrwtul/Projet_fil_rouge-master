@@ -38,17 +38,17 @@ final class OthersDataProvider implements  RestrictedDataProviderInterface ,Coll
 
         $manager = $this->managerRegistery->getManagerForClass($resourceClass);
         $repository = $manager->getRepository($resourceClass);
-        $array = $repository->findBy(array('isEtat' => true));
+        //$array = $repository->findBy(array('isEtat' => true));
         if ($operationName == 'zone-commandes') {
-            return array_map(static function (Zone $element) {
-                foreach ($element->getCommandes() as  $value) {
-                    if ($value->getEtat() != EtatService::ETAT_EN_COURS) {
-                        $element->getCommandes()->removeElement($value);
-                    }
-                }
-                return $element;
-            }, $array);
+            // return array_map(static function (Zone $element) {
+            //     foreach ($element->getCommandes() as  $value) {
+            //         if ($value->getEtat() != EtatService::ETAT_EN_COURS) {
+            //             $element->getCommandes()->removeElement($value);
+            //         }
+            //     }
+            //     return $element;
+            // }, $array);
         }
-        return $array;
+        return  $repository->findBy(array('isEtat' => true));
     }
 }
