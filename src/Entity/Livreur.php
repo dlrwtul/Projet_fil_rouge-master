@@ -44,6 +44,7 @@ class Livreur extends User
     private $matriculeMoto;
 
     #[ORM\OneToMany(mappedBy: 'livreur', targetEntity: Livraison::class)]
+    #[Groups(["livreur:read"])]
     private $livraisons;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -72,7 +73,14 @@ class Livreur extends User
      */
     public function getLivraisons(): Collection
     {
-        return $this->livraisons;
+        $livraisons = new ArrayCollection();
+        foreach ($this->livraisons as $value) {
+            if ($value->getEtat() == EtatService::ETAT_EN_COURS) {
+               $livraisons->add($value);
+            }
+        }
+        
+        return $livraisons;
     }
 
     public function addLivraison(Livraison $livraison): self
