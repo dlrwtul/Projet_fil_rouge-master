@@ -43,8 +43,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
         'delete'
     ]
 )]
-#[ApiFilter(SearchFilter::class, properties: ['commandes.etat' => 'exact'])]
-#[ApiFilter(DateFilter::class, properties: ['commandes.createdAt'])]
+#[ApiFilter(SearchFilter::class, properties: ['commandes[].etat' => 'exact'])]
+#[ApiFilter(DateFilter::class, properties: ['commandes[].createdAt'])]
 class Zone
 {
     #[ORM\Id]
