@@ -89,7 +89,6 @@ class Livreur extends User
     public function removeLivraison(Livraison $livraison): self
     {
         if ($this->livraisons->removeElement($livraison)) {
-            // set the owning side to null (unless already changed)
             if ($livraison->getLivreur() === $this) {
                 $livraison->setLivreur(null);
             }
