@@ -73,14 +73,7 @@ class Livreur extends User
      */
     public function getLivraisons(): Collection
     {
-        $livraisons = new ArrayCollection();
-        foreach ($this->livraisons as $value) {
-            if ($value->getEtat() == EtatService::ETAT_EN_COURS) {
-               $livraisons->add($value);
-            }
-        }
-        
-        return $livraisons;
+        return $this->livraisons;
     }
 
     public function addLivraison(Livraison $livraison): self
