@@ -22,7 +22,7 @@ final class OthersDataProvider implements  RestrictedDataProviderInterface ,Coll
 
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
     {
-        return Quartier::class === $resourceClass || Taille::class === $resourceClass || Burger::class === $resourceClass || PortionFrites::class == $resourceClass || Livreur::class == $resourceClass;
+        return Zone::class === $resourceClass || Quartier::class === $resourceClass || Taille::class === $resourceClass || Burger::class === $resourceClass || PortionFrites::class == $resourceClass || Livreur::class == $resourceClass;
     }
 
     // public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): Zone|Quartier|Taille|null
@@ -34,6 +34,9 @@ final class OthersDataProvider implements  RestrictedDataProviderInterface ,Coll
     // }
 
     public function getCollection(string $resourceClass, string $operationName = null): ?array {
+        if ($resourceClass == Zone::class) {
+            dd($operationName);
+        }
         $manager = $this->managerRegistery->getManagerForClass($resourceClass);
         $repository = $manager->getRepository($resourceClass);
         return $repository->findBy(array('isEtat' => true));
