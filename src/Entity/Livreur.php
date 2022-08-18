@@ -45,7 +45,6 @@ class Livreur extends User
     private $matriculeMoto;
 
     #[ORM\OneToMany(mappedBy: 'livreur', targetEntity: Livraison::class)]
-    #[Groups(["livreur:read"])]
     private $livraisons;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -72,7 +71,7 @@ class Livreur extends User
     /**
      * @return Collection<int, Livraison>
      */
-    public function getLivraisons(): Collection | null
+    public function getLivraisons(): Collection
     {
         return $this->livraisons;
     }
