@@ -37,9 +37,6 @@ final class OthersDataProvider implements  RestrictedDataProviderInterface ,Coll
 
         $manager = $this->managerRegistery->getManagerForClass($resourceClass);
         $repository = $manager->getRepository($resourceClass);
-        if ($resourceClass == Livreur::class) {
-            dd($repository->findBy(array('isEtat' => true)));
-        }
         return $repository->findBy(array('isEtat' => true));
 
     }
