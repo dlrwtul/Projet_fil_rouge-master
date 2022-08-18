@@ -47,12 +47,12 @@ class Livraison
     #[Groups(["livraison:read"])]
     private $montantTotal;
 
-    #[ORM\ManyToOne(targetEntity: Livreur::class, inversedBy: 'livraisons',cascade:["persist","update"])]
+    #[ORM\ManyToOne(targetEntity: Livreur::class, inversedBy: 'livraisons',cascade:["persist"])]
     #[Groups(["livraison:read","livraison:write"])]
     #[Assert\NotNull(message:"Quartier Obligatoire")]
     private $livreur;
 
-    #[ORM\OneToMany(mappedBy: 'livraison', targetEntity: Commande::class,cascade:["persist","update"])]
+    #[ORM\OneToMany(mappedBy: 'livraison', targetEntity: Commande::class,cascade:["persist"])]
     #[Groups(["livraison:read","livraison:write"])]
     #[ApiSubresource]
     #[Assert\Count(min:1)]
