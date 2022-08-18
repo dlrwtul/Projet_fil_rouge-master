@@ -45,6 +45,7 @@ class Livreur extends User
     private $matriculeMoto;
 
     #[ORM\OneToMany(mappedBy: 'livreur', targetEntity: Livraison::class)]
+    #[Groups(["livreur:read"])]
     private $livraisons;
 
     #[ORM\Column(type: 'string', length: 255)]
