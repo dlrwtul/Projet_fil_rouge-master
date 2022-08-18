@@ -40,11 +40,11 @@ class Livraison
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["livraison:read"])]
+    #[Groups(["livraison:read","livreur:read"])]
     private $id;
 
     #[ORM\Column(type: 'float')]
-    #[Groups(["livraison:read"])]
+    #[Groups(["livraison:read","livreur:read"])]
     private $montantTotal;
 
     #[ORM\ManyToOne(targetEntity: Livreur::class, inversedBy: 'livraisons',cascade:["persist"])]
@@ -62,7 +62,7 @@ class Livraison
     private $user;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(["livraison:read","livraison:edit"])]
+    #[Groups(["livraison:read","livraison:edit","livreur:read"])]
     private $etat = EtatService::ETAT_EN_COURS;
 
     public function __construct()
