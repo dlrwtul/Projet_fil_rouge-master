@@ -9,6 +9,9 @@ class LivraisonCommandesValidator
 {
     public static function validate($object, ExecutionContextInterface $context, $payload)
     {
+        if ($object->getId() != null) {
+            return;
+        }
         $errors = [];
         foreach ($object->getCommandes() as $commande) {
             if ($commande->getEtat() != EtatService::ETAT_EN_COURS_DE_LIVRAISON) {
