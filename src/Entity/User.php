@@ -361,7 +361,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Livraison>
      */
-    public function getLivraisons(): Collection
+    public function getLivraisons(): Collection|null
     {
         return $this->livraisons;
     }

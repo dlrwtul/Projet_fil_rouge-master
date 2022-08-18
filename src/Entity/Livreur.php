@@ -9,6 +9,7 @@ use App\Repository\LivreurRepository;
 use App\Controller\RegistrationsController;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Service\EtatService;
+use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -71,7 +72,7 @@ class Livreur extends User
     /**
      * @return Collection<int, Livraison>
      */
-    public function getLivraisons(): Collection
+    public function getLivraisons(): Collection | null
     {
         return $this->livraisons;
     }
