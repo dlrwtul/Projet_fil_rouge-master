@@ -28,7 +28,10 @@ use Symfony\Component\Validator\Constraints as Assert;
     itemOperations: [
         'get' => [ "security" => "is_granted('ALL', object)"],
         'delete' =>[ "security" => "is_granted('ALL', object)"],
-        'put' =>[ "security" => "is_granted('ALL', object)"],
+        'put' =>[ 
+            "security" => "is_granted('ALL', object)",
+            "denormalization_context" => ['groups' => ["livraison:edit"]]
+        ],
     ]
 )]
 #[Assert\Callback([LivraisonCommandesValidator::class, 'validate'])]
@@ -59,7 +62,7 @@ class Livraison
     private $user;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(["livraison:read"])]
+    #[Groups(["livraison:read","livraison:edit"])]
     private $etat = EtatService::ETAT_EN_COURS;
 
     public function __construct()
@@ -93,7 +96,7 @@ class Livraison
     {
         $this->livreur = $livreur;
         $livreur->setEtat(EtatService::ETAT_INDISPONIBLE);
-        
+        $livreur->addLivraison($this);
         return $this;
     }
 
