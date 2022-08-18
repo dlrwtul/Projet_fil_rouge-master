@@ -58,7 +58,7 @@ class Commande
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["commande:read", "livraison:write","ticket:read"])]
+    #[Groups(["commande:read", "livraison:write","ticket:read","livraison:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]

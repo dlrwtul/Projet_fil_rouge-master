@@ -36,7 +36,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Livreur extends User
 {
-    #[Groups("livraison:write",'livraison:read')]
+    #[Groups("livraison:write","livraison:read")]
     protected $id;
     
     #[ORM\Column(type: 'string', length: 255)]
