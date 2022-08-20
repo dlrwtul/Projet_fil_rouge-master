@@ -35,6 +35,9 @@ class CalculMontantCommandeService implements ICalculMontantCommandeService {
             $value->setPrix($value->getPortionFrites()->getPrix());
             $montant += $value->getPrix()*$value->getQuantite();
         }
+        if ($commande->getZone()!=null) {
+            $montant+=$commande->getZone()->getMontantLivraison();
+        }
         return $montant;
     }
 }
